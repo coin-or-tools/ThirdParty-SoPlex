@@ -1,1 +1,9 @@
 * text=auto !eol
+/INSTALL.SoPlex -text
+/Makefile.am -text
+/Makefile.in -text
+/coinsoplex-uninstalled.pc.in -text
+/coinsoplex.pc.in -text
+/config_soplex.h.in -text
+/configure -text
+/configure.ac -text

@@ -4,6 +4,12 @@
 /Makefile.in -text
 /coinsoplex-uninstalled.pc.in -text
 /coinsoplex.pc.in -text
+/config.guess -text
+/config.sub -text
 /config_soplex.h.in -text
 /configure -text
 /configure.ac -text
+/depcomp -text
+/install-sh -text
+/ltmain.sh -text
+/missing -text

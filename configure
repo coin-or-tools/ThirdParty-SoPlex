@@ -1098,7 +1098,7 @@ Optional Features:
   --enable-fast-install[=PKGS]
                           optimize for fast installation [default=yes]
   --disable-libtool-lock  avoid locking (might break parallel builds)
-  --enable-gnu-packages   compile with GNU packages (disabled by default)
+  --disable-zlib          do not compile with compression library zlib
 
 Optional Packages:
   --with-PACKAGE[=ARG]    use PACKAGE [ARG=yes]
@@ -20745,14 +20745,6 @@ fi
 #                         ZLIB and compiler flags                         #
 ###########################################################################
 
-# Check whether --enable-gnu-packages or --disable-gnu-packages was given.
-if test "${enable_gnu_packages+set}" = set; then
-  enableval="$enable_gnu_packages"
-  coin_enable_gnu=$enableval
-else
-  coin_enable_gnu=no
-fi;
-
 
 
 
@@ -20760,7 +20752,16 @@ fi;
 
 
 coin_has_zlib=no
-if test $coin_enable_gnu = yes; then
+
+# Check whether --enable-zlib or --disable-zlib was given.
+if test "${enable_zlib+set}" = set; then
+  enableval="$enable_zlib"
+  coin_enable_zlib=$enableval
+else
+  coin_enable_zlib=yes
+fi;
+
+if test $coin_enable_zlib = yes; then
   #if test x"" = x; then
 #  hdr="#include <zlib.h>"
 #else
@@ -20985,12 +20986,7 @@ fi
 echo "$as_me:$LINENO: result: $ac_cv_lib_z_gzopen" >&5
 echo "${ECHO_T}$ac_cv_lib_z_gzopen" >&6
 if test $ac_cv_lib_z_gzopen = yes; then
-
-                    SOPLEX_LIBS="-lz $SOPLEX_LIBS"
-                    SOPLEX_PCLIBS="-lz $SOPLEX_PCLIBS"
-                    SOPLEX_LIBS_INSTALLED="-lz $SOPLEX_LIBS_INSTALLED"
-
-                 :
+  :
 else
   coin_has_zlib=no
 fi
@@ -20998,6 +20994,11 @@ fi
   fi
 
   if test $coin_has_zlib = yes; then
+
+                    SOPLEX_LIBS="-lz $SOPLEX_LIBS"
+                    SOPLEX_PCLIBS="-lz $SOPLEX_PCLIBS"
+                    SOPLEX_LIBS_INSTALLED="-lz $SOPLEX_LIBS_INSTALLED"
+
 
 cat >>confdefs.h <<\_ACEOF
 #define COIN_HAS_ZLIB 1

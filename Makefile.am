@@ -116,6 +116,7 @@ thirdpartyinclude_HEADERS = \
   $(srcdir)/soplex/src/sorter.h \
   $(srcdir)/soplex/src/spxalloc.h \
   $(srcdir)/soplex/src/spxbasis.h \
+  $(srcdir)/soplex/src/spxboundflippingrt.h \
   $(srcdir)/soplex/src/spxdantzigpr.h \
   $(srcdir)/soplex/src/spxdefaultrt.h \
   $(srcdir)/soplex/src/spxdefines.h \

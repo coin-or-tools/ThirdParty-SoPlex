@@ -18,6 +18,7 @@ libcoinsoplex_la_SOURCES = \
   soplex/src/enter.cpp \
   soplex/src/factor.cpp \
   soplex/src/forest.cpp \
+  soplex/src/gzstream.cpp \
   soplex/src/idxset.cpp \
   soplex/src/leave.cpp \
   soplex/src/lpcolset.cpp \
@@ -30,14 +31,15 @@ libcoinsoplex_la_SOURCES = \
   soplex/src/solve.cpp \
   soplex/src/soplex.cpp \
   soplex/src/spxbasis.cpp \
+  soplex/src/spxboundflippingrt.cpp \
   soplex/src/spxbounds.cpp \
   soplex/src/spxchangebasis.cpp \
-  soplex/src/spxequilisc.cpp \
   soplex/src/spxdantzigpr.cpp \
   soplex/src/spxdefaultrt.cpp \
   soplex/src/spxdefines.cpp \
   soplex/src/spxdesc.cpp \
   soplex/src/spxdevexpr.cpp \
+  soplex/src/spxequilisc.cpp \
   soplex/src/spxfastrt.cpp \
   soplex/src/spxfileio.cpp \
   soplex/src/spxgeometsc.cpp \
@@ -75,8 +77,7 @@ libcoinsoplex_la_SOURCES = \
   soplex/src/update.cpp \
   soplex/src/updatevector.cpp \
   soplex/src/vector.cpp \
-  soplex/src/vsolve.cpp \
-  soplex/src/gzstream.cpp
+  soplex/src/vsolve.cpp
 
 AM_CPPFLAGS = -I`$(CYGPATH_W) $(srcdir)/soplex/src`
 

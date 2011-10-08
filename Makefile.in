@@ -83,11 +83,12 @@ libLTLIBRARIES_INSTALL = $(INSTALL)
 LTLIBRARIES = $(lib_LTLIBRARIES)
 libcoinsoplex_la_LIBADD =
 am_libcoinsoplex_la_OBJECTS = changesoplex.lo didxset.lo dsvector.lo \
-	dvector.lo enter.lo factor.lo forest.lo idxset.lo leave.lo \
-	lpcolset.lo lprowset.lo lprow.lo message.lo mpsinput.lo \
-	nameset.lo slufactor.lo solve.lo soplex.lo spxbasis.lo \
-	spxbounds.lo spxchangebasis.lo spxequilisc.lo spxdantzigpr.lo \
-	spxdefaultrt.lo spxdefines.lo spxdesc.lo spxdevexpr.lo \
+	dvector.lo enter.lo factor.lo forest.lo gzstream.lo idxset.lo \
+	leave.lo lpcolset.lo lprowset.lo lprow.lo message.lo \
+	mpsinput.lo nameset.lo slufactor.lo solve.lo soplex.lo \
+	spxbasis.lo spxboundflippingrt.lo spxbounds.lo \
+	spxchangebasis.lo spxdantzigpr.lo spxdefaultrt.lo \
+	spxdefines.lo spxdesc.lo spxdevexpr.lo spxequilisc.lo \
 	spxfastrt.lo spxfileio.lo spxgeometsc.lo spxharrisrt.lo \
 	spxhybridpr.lo spxid.lo spxio.lo spxlp.lo spxlpfread.lo \
 	spxmainsm.lo spxmpsread.lo spxmpswrite.lo spxlpfwrite.lo \
@@ -96,7 +97,7 @@ am_libcoinsoplex_la_OBJECTS = changesoplex.lo didxset.lo dsvector.lo \
 	spxsteeppr.lo spxsumst.lo spxvecs.lo spxvectorst.lo \
 	spxweightpr.lo spxweightst.lo spxwritestate.lo ssvector.lo \
 	svector.lo svset.lo timer.lo tracemethod.lo unitvector.lo \
-	update.lo updatevector.lo vector.lo vsolve.lo gzstream.lo
+	update.lo updatevector.lo vector.lo vsolve.lo
 libcoinsoplex_la_OBJECTS = $(am_libcoinsoplex_la_OBJECTS)
 depcomp = $(SHELL) $(top_srcdir)/depcomp
 am__depfiles_maybe = depfiles
@@ -284,6 +285,7 @@ libcoinsoplex_la_SOURCES = \
   soplex/src/enter.cpp \
   soplex/src/factor.cpp \
   soplex/src/forest.cpp \
+  soplex/src/gzstream.cpp \
   soplex/src/idxset.cpp \
   soplex/src/leave.cpp \
   soplex/src/lpcolset.cpp \
@@ -296,14 +298,15 @@ libcoinsoplex_la_SOURCES = \
   soplex/src/solve.cpp \
   soplex/src/soplex.cpp \
   soplex/src/spxbasis.cpp \
+  soplex/src/spxboundflippingrt.cpp \
   soplex/src/spxbounds.cpp \
   soplex/src/spxchangebasis.cpp \
-  soplex/src/spxequilisc.cpp \
   soplex/src/spxdantzigpr.cpp \
   soplex/src/spxdefaultrt.cpp \
   soplex/src/spxdefines.cpp \
   soplex/src/spxdesc.cpp \
   soplex/src/spxdevexpr.cpp \
+  soplex/src/spxequilisc.cpp \
   soplex/src/spxfastrt.cpp \
   soplex/src/spxfileio.cpp \
   soplex/src/spxgeometsc.cpp \
@@ -341,8 +344,7 @@ libcoinsoplex_la_SOURCES = \
   soplex/src/update.cpp \
   soplex/src/updatevector.cpp \
   soplex/src/vector.cpp \
-  soplex/src/vsolve.cpp \
-  soplex/src/gzstream.cpp
+  soplex/src/vsolve.cpp
 
 AM_CPPFLAGS = -I`$(CYGPATH_W) $(srcdir)/soplex/src`
 DEFAULT_INCLUDES = -I. -I`$(CYGPATH_W) $(srcdir)`
@@ -539,6 +541,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/solve.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/soplex.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/spxbasis.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/spxboundflippingrt.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/spxbounds.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/spxchangebasis.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/spxdantzigpr.Plo@am__quote@
@@ -656,6 +659,13 @@ forest.lo: soplex/src/forest.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o forest.lo `test -f 'soplex/src/forest.cpp' || echo '$(srcdir)/'`soplex/src/forest.cpp
 
+gzstream.lo: soplex/src/gzstream.cpp
+@am__fastdepCXX_TRUE@	if $(LIBTOOL) --tag=CXX --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT gzstream.lo -MD -MP -MF "$(DEPDIR)/gzstream.Tpo" -c -o gzstream.lo `test -f 'soplex/src/gzstream.cpp' || echo '$(srcdir)/'`soplex/src/gzstream.cpp; \
+@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/gzstream.Tpo" "$(DEPDIR)/gzstream.Plo"; else rm -f "$(DEPDIR)/gzstream.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='soplex/src/gzstream.cpp' object='gzstream.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o gzstream.lo `test -f 'soplex/src/gzstream.cpp' || echo '$(srcdir)/'`soplex/src/gzstream.cpp
+
 idxset.lo: soplex/src/idxset.cpp
 @am__fastdepCXX_TRUE@	if $(LIBTOOL) --tag=CXX --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT idxset.lo -MD -MP -MF "$(DEPDIR)/idxset.Tpo" -c -o idxset.lo `test -f 'soplex/src/idxset.cpp' || echo '$(srcdir)/'`soplex/src/idxset.cpp; \
 @am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/idxset.Tpo" "$(DEPDIR)/idxset.Plo"; else rm -f "$(DEPDIR)/idxset.Tpo"; exit 1; fi
@@ -740,6 +750,13 @@ spxbasis.lo: soplex/src/spxbasis.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o spxbasis.lo `test -f 'soplex/src/spxbasis.cpp' || echo '$(srcdir)/'`soplex/src/spxbasis.cpp
 
+spxboundflippingrt.lo: soplex/src/spxboundflippingrt.cpp
+@am__fastdepCXX_TRUE@	if $(LIBTOOL) --tag=CXX --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT spxboundflippingrt.lo -MD -MP -MF "$(DEPDIR)/spxboundflippingrt.Tpo" -c -o spxboundflippingrt.lo `test -f 'soplex/src/spxboundflippingrt.cpp' || echo '$(srcdir)/'`soplex/src/spxboundflippingrt.cpp; \
+@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/spxboundflippingrt.Tpo" "$(DEPDIR)/spxboundflippingrt.Plo"; else rm -f "$(DEPDIR)/spxboundflippingrt.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='soplex/src/spxboundflippingrt.cpp' object='spxboundflippingrt.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o spxboundflippingrt.lo `test -f 'soplex/src/spxboundflippingrt.cpp' || echo '$(srcdir)/'`soplex/src/spxboundflippingrt.cpp
+
 spxbounds.lo: soplex/src/spxbounds.cpp
 @am__fastdepCXX_TRUE@	if $(LIBTOOL) --tag=CXX --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT spxbounds.lo -MD -MP -MF "$(DEPDIR)/spxbounds.Tpo" -c -o spxbounds.lo `test -f 'soplex/src/spxbounds.cpp' || echo '$(srcdir)/'`soplex/src/spxbounds.cpp; \
 @am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/spxbounds.Tpo" "$(DEPDIR)/spxbounds.Plo"; else rm -f "$(DEPDIR)/spxbounds.Tpo"; exit 1; fi
@@ -753,13 +770,6 @@ spxchangebasis.lo: soplex/src/spxchangebasis.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='soplex/src/spxchangebasis.cpp' object='spxchangebasis.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o spxchangebasis.lo `test -f 'soplex/src/spxchangebasis.cpp' || echo '$(srcdir)/'`soplex/src/spxchangebasis.cpp
-
-spxequilisc.lo: soplex/src/spxequilisc.cpp
-@am__fastdepCXX_TRUE@	if $(LIBTOOL) --tag=CXX --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT spxequilisc.lo -MD -MP -MF "$(DEPDIR)/spxequilisc.Tpo" -c -o spxequilisc.lo `test -f 'soplex/src/spxequilisc.cpp' || echo '$(srcdir)/'`soplex/src/spxequilisc.cpp; \
-@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/spxequilisc.Tpo" "$(DEPDIR)/spxequilisc.Plo"; else rm -f "$(DEPDIR)/spxequilisc.Tpo"; exit 1; fi
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='soplex/src/spxequilisc.cpp' object='spxequilisc.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o spxequilisc.lo `test -f 'soplex/src/spxequilisc.cpp' || echo '$(srcdir)/'`soplex/src/spxequilisc.cpp
 
 spxdantzigpr.lo: soplex/src/spxdantzigpr.cpp
 @am__fastdepCXX_TRUE@	if $(LIBTOOL) --tag=CXX --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT spxdantzigpr.lo -MD -MP -MF "$(DEPDIR)/spxdantzigpr.Tpo" -c -o spxdantzigpr.lo `test -f 'soplex/src/spxdantzigpr.cpp' || echo '$(srcdir)/'`soplex/src/spxdantzigpr.cpp; \
@@ -795,6 +805,13 @@ spxdevexpr.lo: soplex/src/spxdevexpr.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='soplex/src/spxdevexpr.cpp' object='spxdevexpr.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o spxdevexpr.lo `test -f 'soplex/src/spxdevexpr.cpp' || echo '$(srcdir)/'`soplex/src/spxdevexpr.cpp
+
+spxequilisc.lo: soplex/src/spxequilisc.cpp
+@am__fastdepCXX_TRUE@	if $(LIBTOOL) --tag=CXX --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT spxequilisc.lo -MD -MP -MF "$(DEPDIR)/spxequilisc.Tpo" -c -o spxequilisc.lo `test -f 'soplex/src/spxequilisc.cpp' || echo '$(srcdir)/'`soplex/src/spxequilisc.cpp; \
+@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/spxequilisc.Tpo" "$(DEPDIR)/spxequilisc.Plo"; else rm -f "$(DEPDIR)/spxequilisc.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='soplex/src/spxequilisc.cpp' object='spxequilisc.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o spxequilisc.lo `test -f 'soplex/src/spxequilisc.cpp' || echo '$(srcdir)/'`soplex/src/spxequilisc.cpp
 
 spxfastrt.lo: soplex/src/spxfastrt.cpp
 @am__fastdepCXX_TRUE@	if $(LIBTOOL) --tag=CXX --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT spxfastrt.lo -MD -MP -MF "$(DEPDIR)/spxfastrt.Tpo" -c -o spxfastrt.lo `test -f 'soplex/src/spxfastrt.cpp' || echo '$(srcdir)/'`soplex/src/spxfastrt.cpp; \
@@ -1061,13 +1078,6 @@ vsolve.lo: soplex/src/vsolve.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='soplex/src/vsolve.cpp' object='vsolve.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o vsolve.lo `test -f 'soplex/src/vsolve.cpp' || echo '$(srcdir)/'`soplex/src/vsolve.cpp
-
-gzstream.lo: soplex/src/gzstream.cpp
-@am__fastdepCXX_TRUE@	if $(LIBTOOL) --tag=CXX --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT gzstream.lo -MD -MP -MF "$(DEPDIR)/gzstream.Tpo" -c -o gzstream.lo `test -f 'soplex/src/gzstream.cpp' || echo '$(srcdir)/'`soplex/src/gzstream.cpp; \
-@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/gzstream.Tpo" "$(DEPDIR)/gzstream.Plo"; else rm -f "$(DEPDIR)/gzstream.Tpo"; exit 1; fi
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='soplex/src/gzstream.cpp' object='gzstream.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o gzstream.lo `test -f 'soplex/src/gzstream.cpp' || echo '$(srcdir)/'`soplex/src/gzstream.cpp
 
 mostlyclean-libtool:
 	-rm -f *.lo

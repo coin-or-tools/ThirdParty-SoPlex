@@ -43,6 +43,7 @@ libcoinsoplex_la_SOURCES = \
   soplex/src/spxfastrt.cpp \
   soplex/src/spxfileio.cpp \
   soplex/src/spxgeometsc.cpp \
+  soplex/src/spxgithash.cpp \
   soplex/src/spxharrisrt.cpp \
   soplex/src/spxhybridpr.cpp \
   soplex/src/spxid.cpp \

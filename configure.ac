@@ -61,8 +61,6 @@ if test $coin_has_zlib = "yes"; then
   CXXFLAGS="$CXXFLAGS -DWITH_ZLIB"
 fi
 
-CXXFLAGS="$CXXFLAGS -DNO_ADDITIONAL_CHECKS"
-
 ###########################################################################
 #                               finish up                                 #
 ###########################################################################

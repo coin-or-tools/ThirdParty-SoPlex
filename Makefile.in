@@ -89,15 +89,15 @@ am_libcoinsoplex_la_OBJECTS = changesoplex.lo didxset.lo dsvector.lo \
 	spxbasis.lo spxboundflippingrt.lo spxbounds.lo \
 	spxchangebasis.lo spxdantzigpr.lo spxdefaultrt.lo \
 	spxdefines.lo spxdesc.lo spxdevexpr.lo spxequilisc.lo \
-	spxfastrt.lo spxfileio.lo spxgeometsc.lo spxharrisrt.lo \
-	spxhybridpr.lo spxid.lo spxio.lo spxlp.lo spxlpfread.lo \
-	spxmainsm.lo spxmpsread.lo spxmpswrite.lo spxlpfwrite.lo \
-	spxout.lo spxparmultpr.lo spxquality.lo spxscaler.lo \
-	spxshift.lo spxsolver.lo spxsolve.lo spxstarter.lo \
-	spxsteeppr.lo spxsumst.lo spxvecs.lo spxvectorst.lo \
-	spxweightpr.lo spxweightst.lo spxwritestate.lo ssvector.lo \
-	svector.lo svset.lo timer.lo tracemethod.lo unitvector.lo \
-	update.lo updatevector.lo vector.lo vsolve.lo
+	spxfastrt.lo spxfileio.lo spxgeometsc.lo spxgithash.lo \
+	spxharrisrt.lo spxhybridpr.lo spxid.lo spxio.lo spxlp.lo \
+	spxlpfread.lo spxmainsm.lo spxmpsread.lo spxmpswrite.lo \
+	spxlpfwrite.lo spxout.lo spxparmultpr.lo spxquality.lo \
+	spxscaler.lo spxshift.lo spxsolver.lo spxsolve.lo \
+	spxstarter.lo spxsteeppr.lo spxsumst.lo spxvecs.lo \
+	spxvectorst.lo spxweightpr.lo spxweightst.lo spxwritestate.lo \
+	ssvector.lo svector.lo svset.lo timer.lo tracemethod.lo \
+	unitvector.lo update.lo updatevector.lo vector.lo vsolve.lo
 libcoinsoplex_la_OBJECTS = $(am_libcoinsoplex_la_OBJECTS)
 depcomp = $(SHELL) $(top_srcdir)/depcomp
 am__depfiles_maybe = depfiles
@@ -310,6 +310,7 @@ libcoinsoplex_la_SOURCES = \
   soplex/src/spxfastrt.cpp \
   soplex/src/spxfileio.cpp \
   soplex/src/spxgeometsc.cpp \
+  soplex/src/spxgithash.cpp \
   soplex/src/spxharrisrt.cpp \
   soplex/src/spxhybridpr.cpp \
   soplex/src/spxid.cpp \
@@ -554,6 +555,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/spxfastrt.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/spxfileio.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/spxgeometsc.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/spxgithash.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/spxharrisrt.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/spxhybridpr.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/spxid.Plo@am__quote@
@@ -834,6 +836,13 @@ spxgeometsc.lo: soplex/src/spxgeometsc.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='soplex/src/spxgeometsc.cpp' object='spxgeometsc.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o spxgeometsc.lo `test -f 'soplex/src/spxgeometsc.cpp' || echo '$(srcdir)/'`soplex/src/spxgeometsc.cpp
+
+spxgithash.lo: soplex/src/spxgithash.cpp
+@am__fastdepCXX_TRUE@	if $(LIBTOOL) --tag=CXX --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT spxgithash.lo -MD -MP -MF "$(DEPDIR)/spxgithash.Tpo" -c -o spxgithash.lo `test -f 'soplex/src/spxgithash.cpp' || echo '$(srcdir)/'`soplex/src/spxgithash.cpp; \
+@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/spxgithash.Tpo" "$(DEPDIR)/spxgithash.Plo"; else rm -f "$(DEPDIR)/spxgithash.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='soplex/src/spxgithash.cpp' object='spxgithash.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o spxgithash.lo `test -f 'soplex/src/spxgithash.cpp' || echo '$(srcdir)/'`soplex/src/spxgithash.cpp
 
 spxharrisrt.lo: soplex/src/spxharrisrt.cpp
 @am__fastdepCXX_TRUE@	if $(LIBTOOL) --tag=CXX --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT spxharrisrt.lo -MD -MP -MF "$(DEPDIR)/spxharrisrt.Tpo" -c -o spxharrisrt.lo `test -f 'soplex/src/spxharrisrt.cpp' || echo '$(srcdir)/'`soplex/src/spxharrisrt.cpp; \

@@ -15,6 +15,7 @@ libcoinsoplex_la_SOURCES = \
   soplex/src/didxset.cpp \
   soplex/src/dsvector.cpp \
   soplex/src/dvector.cpp \
+  soplex/src/dvector_exact.cpp \
   soplex/src/enter.cpp \
   soplex/src/factor.cpp \
   soplex/src/forest.cpp \
@@ -25,6 +26,7 @@ libcoinsoplex_la_SOURCES = \
   soplex/src/lprowset.cpp \
   soplex/src/lprow.cpp \
   soplex/src/message.cpp \
+  soplex/src/mpqreal.cpp \
   soplex/src/mpsinput.cpp \
   soplex/src/nameset.cpp \
   soplex/src/slufactor.cpp \
@@ -78,6 +80,7 @@ libcoinsoplex_la_SOURCES = \
   soplex/src/update.cpp \
   soplex/src/updatevector.cpp \
   soplex/src/vector.cpp \
+  soplex/src/vector_exact.cpp \
   soplex/src/vsolve.cpp
 
 AM_CPPFLAGS = -I`$(CYGPATH_W) $(srcdir)/soplex/src`

@@ -1,5 +1,8 @@
 /* config_soplex.h.in.  Generated from configure.ac by autoheader.  */
 
+/* Define to 1 if GMP is available */
+#undef COIN_HAS_GMP
+
 /* Define to 1 if zlib is available */
 #undef COIN_HAS_ZLIB
 
@@ -11,6 +14,12 @@
 
 /* Define to 1 if you have the <dlfcn.h> header file. */
 #undef HAVE_DLFCN_H
+
+/* Define to 1 if you have the <gmpxx.h> header file. */
+#undef HAVE_GMPXX_H
+
+/* Define to 1 if you have the <gmp.h> header file. */
+#undef HAVE_GMP_H
 
 /* Define to 1 if you have the <inttypes.h> header file. */
 #undef HAVE_INTTYPES_H

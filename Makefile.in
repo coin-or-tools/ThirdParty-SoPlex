@@ -83,21 +83,22 @@ libLTLIBRARIES_INSTALL = $(INSTALL)
 LTLIBRARIES = $(lib_LTLIBRARIES)
 libcoinsoplex_la_LIBADD =
 am_libcoinsoplex_la_OBJECTS = changesoplex.lo didxset.lo dsvector.lo \
-	dvector.lo enter.lo factor.lo forest.lo gzstream.lo idxset.lo \
-	leave.lo lpcolset.lo lprowset.lo lprow.lo message.lo \
-	mpsinput.lo nameset.lo slufactor.lo solve.lo soplex.lo \
-	spxbasis.lo spxboundflippingrt.lo spxbounds.lo \
-	spxchangebasis.lo spxdantzigpr.lo spxdefaultrt.lo \
-	spxdefines.lo spxdesc.lo spxdevexpr.lo spxequilisc.lo \
-	spxfastrt.lo spxfileio.lo spxgeometsc.lo spxgithash.lo \
-	spxharrisrt.lo spxhybridpr.lo spxid.lo spxio.lo spxlp.lo \
-	spxlpfread.lo spxmainsm.lo spxmpsread.lo spxmpswrite.lo \
-	spxlpfwrite.lo spxout.lo spxparmultpr.lo spxquality.lo \
-	spxscaler.lo spxshift.lo spxsolver.lo spxsolve.lo \
-	spxstarter.lo spxsteeppr.lo spxsumst.lo spxvecs.lo \
-	spxvectorst.lo spxweightpr.lo spxweightst.lo spxwritestate.lo \
-	ssvector.lo svector.lo svset.lo timer.lo tracemethod.lo \
-	unitvector.lo update.lo updatevector.lo vector.lo vsolve.lo
+	dvector.lo dvector_exact.lo enter.lo factor.lo forest.lo \
+	gzstream.lo idxset.lo leave.lo lpcolset.lo lprowset.lo \
+	lprow.lo message.lo mpqreal.lo mpsinput.lo nameset.lo \
+	slufactor.lo solve.lo soplex.lo spxbasis.lo \
+	spxboundflippingrt.lo spxbounds.lo spxchangebasis.lo \
+	spxdantzigpr.lo spxdefaultrt.lo spxdefines.lo spxdesc.lo \
+	spxdevexpr.lo spxequilisc.lo spxfastrt.lo spxfileio.lo \
+	spxgeometsc.lo spxgithash.lo spxharrisrt.lo spxhybridpr.lo \
+	spxid.lo spxio.lo spxlp.lo spxlpfread.lo spxmainsm.lo \
+	spxmpsread.lo spxmpswrite.lo spxlpfwrite.lo spxout.lo \
+	spxparmultpr.lo spxquality.lo spxscaler.lo spxshift.lo \
+	spxsolver.lo spxsolve.lo spxstarter.lo spxsteeppr.lo \
+	spxsumst.lo spxvecs.lo spxvectorst.lo spxweightpr.lo \
+	spxweightst.lo spxwritestate.lo ssvector.lo svector.lo \
+	svset.lo timer.lo tracemethod.lo unitvector.lo update.lo \
+	updatevector.lo vector.lo vector_exact.lo vsolve.lo
 libcoinsoplex_la_OBJECTS = $(am_libcoinsoplex_la_OBJECTS)
 depcomp = $(SHELL) $(top_srcdir)/depcomp
 am__depfiles_maybe = depfiles
@@ -282,6 +283,7 @@ libcoinsoplex_la_SOURCES = \
   soplex/src/didxset.cpp \
   soplex/src/dsvector.cpp \
   soplex/src/dvector.cpp \
+  soplex/src/dvector_exact.cpp \
   soplex/src/enter.cpp \
   soplex/src/factor.cpp \
   soplex/src/forest.cpp \
@@ -292,6 +294,7 @@ libcoinsoplex_la_SOURCES = \
   soplex/src/lprowset.cpp \
   soplex/src/lprow.cpp \
   soplex/src/message.cpp \
+  soplex/src/mpqreal.cpp \
   soplex/src/mpsinput.cpp \
   soplex/src/nameset.cpp \
   soplex/src/slufactor.cpp \
@@ -345,6 +348,7 @@ libcoinsoplex_la_SOURCES = \
   soplex/src/update.cpp \
   soplex/src/updatevector.cpp \
   soplex/src/vector.cpp \
+  soplex/src/vector_exact.cpp \
   soplex/src/vsolve.cpp
 
 AM_CPPFLAGS = -I`$(CYGPATH_W) $(srcdir)/soplex/src`
@@ -527,6 +531,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/didxset.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/dsvector.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/dvector.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/dvector_exact.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/enter.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/factor.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/forest.Plo@am__quote@
@@ -537,6 +542,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/lprow.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/lprowset.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/message.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/mpqreal.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/mpsinput.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/nameset.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/slufactor.Plo@am__quote@
@@ -590,6 +596,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/update.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/updatevector.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/vector.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/vector_exact.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/vsolve.Plo@am__quote@
 
 .cpp.o:
@@ -640,6 +647,13 @@ dvector.lo: soplex/src/dvector.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='soplex/src/dvector.cpp' object='dvector.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o dvector.lo `test -f 'soplex/src/dvector.cpp' || echo '$(srcdir)/'`soplex/src/dvector.cpp
+
+dvector_exact.lo: soplex/src/dvector_exact.cpp
+@am__fastdepCXX_TRUE@	if $(LIBTOOL) --tag=CXX --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT dvector_exact.lo -MD -MP -MF "$(DEPDIR)/dvector_exact.Tpo" -c -o dvector_exact.lo `test -f 'soplex/src/dvector_exact.cpp' || echo '$(srcdir)/'`soplex/src/dvector_exact.cpp; \
+@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/dvector_exact.Tpo" "$(DEPDIR)/dvector_exact.Plo"; else rm -f "$(DEPDIR)/dvector_exact.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='soplex/src/dvector_exact.cpp' object='dvector_exact.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o dvector_exact.lo `test -f 'soplex/src/dvector_exact.cpp' || echo '$(srcdir)/'`soplex/src/dvector_exact.cpp
 
 enter.lo: soplex/src/enter.cpp
 @am__fastdepCXX_TRUE@	if $(LIBTOOL) --tag=CXX --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT enter.lo -MD -MP -MF "$(DEPDIR)/enter.Tpo" -c -o enter.lo `test -f 'soplex/src/enter.cpp' || echo '$(srcdir)/'`soplex/src/enter.cpp; \
@@ -710,6 +724,13 @@ message.lo: soplex/src/message.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='soplex/src/message.cpp' object='message.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o message.lo `test -f 'soplex/src/message.cpp' || echo '$(srcdir)/'`soplex/src/message.cpp
+
+mpqreal.lo: soplex/src/mpqreal.cpp
+@am__fastdepCXX_TRUE@	if $(LIBTOOL) --tag=CXX --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT mpqreal.lo -MD -MP -MF "$(DEPDIR)/mpqreal.Tpo" -c -o mpqreal.lo `test -f 'soplex/src/mpqreal.cpp' || echo '$(srcdir)/'`soplex/src/mpqreal.cpp; \
+@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/mpqreal.Tpo" "$(DEPDIR)/mpqreal.Plo"; else rm -f "$(DEPDIR)/mpqreal.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='soplex/src/mpqreal.cpp' object='mpqreal.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o mpqreal.lo `test -f 'soplex/src/mpqreal.cpp' || echo '$(srcdir)/'`soplex/src/mpqreal.cpp
 
 mpsinput.lo: soplex/src/mpsinput.cpp
 @am__fastdepCXX_TRUE@	if $(LIBTOOL) --tag=CXX --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT mpsinput.lo -MD -MP -MF "$(DEPDIR)/mpsinput.Tpo" -c -o mpsinput.lo `test -f 'soplex/src/mpsinput.cpp' || echo '$(srcdir)/'`soplex/src/mpsinput.cpp; \
@@ -1081,6 +1102,13 @@ vector.lo: soplex/src/vector.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='soplex/src/vector.cpp' object='vector.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o vector.lo `test -f 'soplex/src/vector.cpp' || echo '$(srcdir)/'`soplex/src/vector.cpp
+
+vector_exact.lo: soplex/src/vector_exact.cpp
+@am__fastdepCXX_TRUE@	if $(LIBTOOL) --tag=CXX --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT vector_exact.lo -MD -MP -MF "$(DEPDIR)/vector_exact.Tpo" -c -o vector_exact.lo `test -f 'soplex/src/vector_exact.cpp' || echo '$(srcdir)/'`soplex/src/vector_exact.cpp; \
+@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/vector_exact.Tpo" "$(DEPDIR)/vector_exact.Plo"; else rm -f "$(DEPDIR)/vector_exact.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='soplex/src/vector_exact.cpp' object='vector_exact.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o vector_exact.lo `test -f 'soplex/src/vector_exact.cpp' || echo '$(srcdir)/'`soplex/src/vector_exact.cpp
 
 vsolve.lo: soplex/src/vsolve.cpp
 @am__fastdepCXX_TRUE@	if $(LIBTOOL) --tag=CXX --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT vsolve.lo -MD -MP -MF "$(DEPDIR)/vsolve.Tpo" -c -o vsolve.lo `test -f 'soplex/src/vsolve.cpp' || echo '$(srcdir)/'`soplex/src/vsolve.cpp; \

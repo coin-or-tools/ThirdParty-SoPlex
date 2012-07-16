@@ -61,6 +61,22 @@ if test $coin_has_zlib = "yes"; then
   CXXFLAGS="$CXXFLAGS -DWITH_ZLIB"
 fi
 
+AC_COIN_CHECK_GMP(SOPLEX)
+if test $coin_has_gmp = yes; then
+  AC_LANG_PUSH(C++)
+  # TODO check for gmpxx library here somehow...
+  AC_COIN_CHECK_HEADER([gmpxx.h],[],[coin_has_gmp=no])
+  AC_LANG_POP(C++)
+fi
+
+if test $coin_has_gmp = yes; then
+  CXXFLAGS="$CXXFLAGS -DWITH_GMP"
+  
+  SOPLEX_LIBS="-lgmpxx $SOPLEX_LIBS"
+  SOPLEX_PCLIBS="-lgmpxx $SOPLEX_PCLIBS"
+  SOPLEX_LIBS_INSTALLED="-lgmpxx $SOPLEX_LIBS_INSTALLED"
+fi
+
 ###########################################################################
 #                               finish up                                 #
 ###########################################################################

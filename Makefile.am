@@ -12,25 +12,22 @@ lib_LTLIBRARIES = libcoinsoplex.la
 
 libcoinsoplex_la_SOURCES = \
   soplex/src/changesoplex.cpp \
+  soplex/src/clufactor.cpp \
   soplex/src/didxset.cpp \
   soplex/src/dsvector.cpp \
   soplex/src/dvector.cpp \
   soplex/src/dvector_exact.cpp \
   soplex/src/enter.cpp \
-  soplex/src/factor.cpp \
-  soplex/src/forest.cpp \
   soplex/src/gzstream.cpp \
   soplex/src/idxset.cpp \
   soplex/src/leave.cpp \
   soplex/src/lpcolset.cpp \
   soplex/src/lprowset.cpp \
   soplex/src/lprow.cpp \
-  soplex/src/message.cpp \
   soplex/src/mpqreal.cpp \
   soplex/src/mpsinput.cpp \
   soplex/src/nameset.cpp \
   soplex/src/slufactor.cpp \
-  soplex/src/solve.cpp \
   soplex/src/soplex.cpp \
   soplex/src/spxbasis.cpp \
   soplex/src/spxboundflippingrt.cpp \
@@ -77,11 +74,9 @@ libcoinsoplex_la_SOURCES = \
   soplex/src/timer.cpp \
   soplex/src/tracemethod.cpp \
   soplex/src/unitvector.cpp \
-  soplex/src/update.cpp \
   soplex/src/updatevector.cpp \
   soplex/src/vector.cpp \
-  soplex/src/vector_exact.cpp \
-  soplex/src/vsolve.cpp
+  soplex/src/vector_exact.cpp
 
 AM_CPPFLAGS = -I`$(CYGPATH_W) $(srcdir)/soplex/src`
 
@@ -110,7 +105,6 @@ thirdpartyinclude_HEADERS = \
   $(srcdir)/soplex/src/lpcolset.h \
   $(srcdir)/soplex/src/lprow.h \
   $(srcdir)/soplex/src/lprowset.h \
-  $(srcdir)/soplex/src/message.h \
   $(srcdir)/soplex/src/mpsinput.h \
   $(srcdir)/soplex/src/nameset.h \
   $(srcdir)/soplex/src/random.h \
@@ -154,7 +148,8 @@ thirdpartyinclude_HEADERS = \
   $(srcdir)/soplex/src/tracemethod.h \
   $(srcdir)/soplex/src/unitvector.h \
   $(srcdir)/soplex/src/updatevector.h \
-  $(srcdir)/soplex/src/vector.h
+  $(srcdir)/soplex/src/vector.h \
+  $(srcdir)/soplex/src/git_hash.cpp
 
 pkgconfiglibdir = $(libdir)/pkgconfig
 pkgconfiglib_DATA = coinsoplex.pc

@@ -96,6 +96,7 @@ thirdpartyinclude_HEADERS = \
   $(srcdir)/soplex/src/didxset.h \
   $(srcdir)/soplex/src/dsvector.h \
   $(srcdir)/soplex/src/dvector.h \
+  $(srcdir)/soplex/src/dvector_exact.h \
   $(srcdir)/soplex/src/exceptions.h \
   $(srcdir)/soplex/src/gzstream.h \
   $(srcdir)/soplex/src/idlist.h \
@@ -105,6 +106,7 @@ thirdpartyinclude_HEADERS = \
   $(srcdir)/soplex/src/lpcolset.h \
   $(srcdir)/soplex/src/lprow.h \
   $(srcdir)/soplex/src/lprowset.h \
+  $(srcdir)/soplex/src/mpqreal.h \
   $(srcdir)/soplex/src/mpsinput.h \
   $(srcdir)/soplex/src/nameset.h \
   $(srcdir)/soplex/src/random.h \
@@ -123,6 +125,7 @@ thirdpartyinclude_HEADERS = \
   $(srcdir)/soplex/src/spxfastrt.h \
   $(srcdir)/soplex/src/spxfileio.h \
   $(srcdir)/soplex/src/spxgeometsc.h \
+  $(srcdir)/soplex/src/spxgithash.h \
   $(srcdir)/soplex/src/spxharrisrt.h \
   $(srcdir)/soplex/src/spxhybridpr.h \
   $(srcdir)/soplex/src/spxid.h \
@@ -136,6 +139,7 @@ thirdpartyinclude_HEADERS = \
   $(srcdir)/soplex/src/spxsimplifier.h \
   $(srcdir)/soplex/src/spxsolver.h \
   $(srcdir)/soplex/src/spxstarter.h \
+  $(srcdir)/soplex/src/spxsteepexpr.h \
   $(srcdir)/soplex/src/spxsteeppr.h \
   $(srcdir)/soplex/src/spxsumst.h \
   $(srcdir)/soplex/src/spxvectorst.h \
@@ -149,6 +153,7 @@ thirdpartyinclude_HEADERS = \
   $(srcdir)/soplex/src/unitvector.h \
   $(srcdir)/soplex/src/updatevector.h \
   $(srcdir)/soplex/src/vector.h \
+  $(srcdir)/soplex/src/vector_exact.h \
   $(srcdir)/soplex/src/git_hash.cpp
 
 pkgconfiglibdir = $(libdir)/pkgconfig

@@ -10,7 +10,7 @@
 
 AC_PREREQ(2.59)
 
-AC_INIT([ThirdPartySoplex],[1.2.3],[http://projects.coin-or.org/BuildTools/newticket])
+AC_INIT([ThirdPartySoplex],[1.2],[http://projects.coin-or.org/BuildTools/newticket])
 
 AC_COPYRIGHT([
 Copyright 2010,2011 Stefan Vigerske and others.
@@ -28,7 +28,7 @@ AC_CONFIG_SRCDIR(soplex/src/soplex.h)
 # /usr/local.
 AC_PREFIX_DEFAULT([`pwd`])
 
-AC_COIN_PROJECTDIR_INIT(SoPlex,3:3:2)
+AC_COIN_PROJECTDIR_INIT(SoPlex)
 
 #############################################################################
 #                         Standard build tool stuff                         #

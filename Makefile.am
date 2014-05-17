@@ -158,7 +158,7 @@ thirdpartyinclude_HEADERS = \
   $(srcdir)/soplex/src/updatevector.h \
   $(srcdir)/soplex/src/vectorbase.h \
   $(srcdir)/soplex/src/vector.h \
-  $(srcdir)/soplex/src/git_hash.h
+  $(srcdir)/soplex/src/git_hash.cpp
 
 pkgconfiglibdir = $(libdir)/pkgconfig
 pkgconfiglib_DATA = coinsoplex.pc

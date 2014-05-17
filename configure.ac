@@ -53,36 +53,34 @@ AC_COIN_HAS_PKGCONFIG
 AC_COIN_INIT_AUTO_TOOLS
 
 ###########################################################################
-#                         ZLIB and compiler flags                         #
+#                       external libraries checks                         #
 ###########################################################################
 
 AC_COIN_CHECK_GNU_ZLIB(SOPLEX)
 if test $coin_has_zlib = "yes"; then
-  CXXFLAGS="$CXXFLAGS -DWITH_ZLIB"
+  CXXFLAGS="$CXXFLAGS -DSOPLEX_WITH_ZLIB"
 fi
 
-SOPLEX_WITH_GMP_CFLAG=
 AC_COIN_CHECK_GMP
 if test $coin_has_gmp = yes; then
-  AC_MSG_CHECKING([for gmpxx])
-  AC_LANG_PUSH(C++)
-  SAVED_LDFLAGS="$LDFLAGS"
-  LDFLAGS="-lgmpxx -lgmp $LDFLAGS"
-  AC_LINK_IFELSE(
-    [AC_LANG_PROGRAM([#include <gmpxx.h>],[mpq_class pq])],
-    [AC_MSG_RESULT(yes)
-     SOPLEX_WITH_GMP_CFLAG=-DSOPLEX_WITH_GMP
-     CXXFLAGS="$CXXFLAGS $SOPLEX_WITH_GMP_CFLAG"
-     SOPLEX_LIBS="-lgmpxx -lgmp $SOPLEX_LIBS"
-     SOPLEX_PCLIBS="-lgmpxx -lgmp $SOPLEX_PCLIBS"
-     SOPLEX_LIBS_INSTALLED="-lgmpxx -lgmp $SOPLEX_LIBS_INSTALLED"
-    ],
-    [AC_MSG_RESULT(no)
-     coin_has_gmp=no])
-  LDFLAGS="$SAVED_LDFLAGS"
-  AC_LANG_POP(C++)
+  CXXFLAGS="$CXXFLAGS -DSOPLEX_WITH_GMP"
+  SOPLEX_LIBS="-lgmp $SOPLEX_LIBS"
+  SOPLEX_PCLIBS="-lgmp $SOPLEX_PCLIBS"
+  SOPLEX_LIBS_INSTALLED="-lgmp $SOPLEX_LIBS_INSTALLED"
 fi
-AC_SUBST(SOPLEX_WITH_GMP_CFLAG)
+
+# SoPlex requires C++ 2011 standard (or -DSOPLEX_LEGACY)
+case "$CXX" in
+  cl* | */cl* | CL* | */CL* ) ;;
+  icl* | */icl* | ICL* | */ICL* )  # Intel on Windows
+    CXXFLAGS="$CXXFLAGS -Qstd=c++0x"
+    ;;
+  * )  # GCC, clang, Intel on Linux, ...
+    CXXFLAGS="$CXXFLAGS -std=c++0x"
+    ;;
+esac
+
+# TODO SoPlex may not be threadsafe by default; adding -DDISABLE_VERBOSITY could help 
 
 ###########################################################################
 #                               finish up                                 #

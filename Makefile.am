@@ -14,21 +14,19 @@ libcoinsoplex_la_SOURCES = \
   soplex/src/changesoplex.cpp \
   soplex/src/clufactor.cpp \
   soplex/src/didxset.cpp \
-  soplex/src/dsvector.cpp \
-  soplex/src/dvector.cpp \
-  soplex/src/dvector_exact.cpp \
   soplex/src/enter.cpp \
   soplex/src/gzstream.cpp \
   soplex/src/idxset.cpp \
   soplex/src/leave.cpp \
-  soplex/src/lpcolset.cpp \
-  soplex/src/lprowset.cpp \
-  soplex/src/lprow.cpp \
-  soplex/src/mpqreal.cpp \
   soplex/src/mpsinput.cpp \
   soplex/src/nameset.cpp \
+  soplex/src/rational.cpp \
   soplex/src/slufactor.cpp \
+  soplex/src/solverational.cpp \
+  soplex/src/solvereal.cpp \
   soplex/src/soplex.cpp \
+  soplex/src/soplexlegacy.cpp \
+  soplex/src/spxautopr.cpp \
   soplex/src/spxbasis.cpp \
   soplex/src/spxboundflippingrt.cpp \
   soplex/src/spxbounds.cpp \
@@ -46,13 +44,9 @@ libcoinsoplex_la_SOURCES = \
   soplex/src/spxharrisrt.cpp \
   soplex/src/spxhybridpr.cpp \
   soplex/src/spxid.cpp \
-  soplex/src/spxio.cpp \
-  soplex/src/spxlp.cpp \
-  soplex/src/spxlpfread.cpp \
+  soplex/src/spxlpbase_rational.cpp \
+  soplex/src/spxlpbase_real.cpp \
   soplex/src/spxmainsm.cpp \
-  soplex/src/spxmpsread.cpp \
-  soplex/src/spxmpswrite.cpp \
-  soplex/src/spxlpfwrite.cpp \
   soplex/src/spxout.cpp \
   soplex/src/spxparmultpr.cpp \
   soplex/src/spxquality.cpp \
@@ -68,15 +62,10 @@ libcoinsoplex_la_SOURCES = \
   soplex/src/spxweightpr.cpp \
   soplex/src/spxweightst.cpp \
   soplex/src/spxwritestate.cpp \
-  soplex/src/ssvector.cpp \
-  soplex/src/svector.cpp \
-  soplex/src/svset.cpp \
+  soplex/src/statistics.cpp \
   soplex/src/timer.cpp \
-  soplex/src/tracemethod.cpp \
   soplex/src/unitvector.cpp \
-  soplex/src/updatevector.cpp \
-  soplex/src/vector.cpp \
-  soplex/src/vector_exact.cpp
+  soplex/src/updatevector.cpp
 
 AM_CPPFLAGS = -I`$(CYGPATH_W) $(srcdir)/soplex/src`
 
@@ -87,6 +76,8 @@ libcoinsoplex_la_LDFLAGS = $(LT_LDFLAGS)
 thirdpartyincludedir = $(includedir)/coin/ThirdParty
 thirdpartyinclude_HEADERS = \
   $(srcdir)/soplex/src/array.h \
+  $(srcdir)/soplex/src/basevectors.h \
+  $(srcdir)/soplex/src/classarray.h \
   $(srcdir)/soplex/src/clufactor.h \
   $(srcdir)/soplex/src/cring.h \
   $(srcdir)/soplex/src/dataarray.h \
@@ -94,27 +85,36 @@ thirdpartyinclude_HEADERS = \
   $(srcdir)/soplex/src/datakey.h \
   $(srcdir)/soplex/src/dataset.h \
   $(srcdir)/soplex/src/didxset.h \
+  $(srcdir)/soplex/src/dsvectorbase.h \
   $(srcdir)/soplex/src/dsvector.h \
+  $(srcdir)/soplex/src/dvectorbase.h \
   $(srcdir)/soplex/src/dvector.h \
-  $(srcdir)/soplex/src/dvector_exact.h \
   $(srcdir)/soplex/src/exceptions.h \
   $(srcdir)/soplex/src/gzstream.h \
   $(srcdir)/soplex/src/idlist.h \
   $(srcdir)/soplex/src/idxset.h \
   $(srcdir)/soplex/src/islist.h \
+  $(srcdir)/soplex/src/lpcolbase.h \
   $(srcdir)/soplex/src/lpcol.h \
+  $(srcdir)/soplex/src/lpcolsetbase.h \
   $(srcdir)/soplex/src/lpcolset.h \
+  $(srcdir)/soplex/src/lprowbase.h \
   $(srcdir)/soplex/src/lprow.h \
+  $(srcdir)/soplex/src/lprowsetbase.h \
   $(srcdir)/soplex/src/lprowset.h \
-  $(srcdir)/soplex/src/mpqreal.h \
   $(srcdir)/soplex/src/mpsinput.h \
   $(srcdir)/soplex/src/nameset.h \
   $(srcdir)/soplex/src/random.h \
+  $(srcdir)/soplex/src/rational.h \
   $(srcdir)/soplex/src/slinsolver.h \
   $(srcdir)/soplex/src/slufactor.h \
+  $(srcdir)/soplex/src/solbase.h \
+  $(srcdir)/soplex/src/sol.h \
   $(srcdir)/soplex/src/soplex.h \
+  $(srcdir)/soplex/src/soplexlegacy.h \
   $(srcdir)/soplex/src/sorter.h \
   $(srcdir)/soplex/src/spxalloc.h \
+  $(srcdir)/soplex/src/spxautopr.h \
   $(srcdir)/soplex/src/spxbasis.h \
   $(srcdir)/soplex/src/spxboundflippingrt.h \
   $(srcdir)/soplex/src/spxdantzigpr.h \
@@ -129,6 +129,7 @@ thirdpartyinclude_HEADERS = \
   $(srcdir)/soplex/src/spxharrisrt.h \
   $(srcdir)/soplex/src/spxhybridpr.h \
   $(srcdir)/soplex/src/spxid.h \
+  $(srcdir)/soplex/src/spxlpbase.h \
   $(srcdir)/soplex/src/spxlp.h \
   $(srcdir)/soplex/src/spxmainsm.h \
   $(srcdir)/soplex/src/spxout.h \
@@ -145,16 +146,19 @@ thirdpartyinclude_HEADERS = \
   $(srcdir)/soplex/src/spxvectorst.h \
   $(srcdir)/soplex/src/spxweightpr.h \
   $(srcdir)/soplex/src/spxweightst.h \
+  $(srcdir)/soplex/src/ssvectorbase.h \
   $(srcdir)/soplex/src/ssvector.h \
+  $(srcdir)/soplex/src/statistics.h \
+  $(srcdir)/soplex/src/svectorbase.h \
   $(srcdir)/soplex/src/svector.h \
+  $(srcdir)/soplex/src/svsetbase.h \
   $(srcdir)/soplex/src/svset.h \
   $(srcdir)/soplex/src/timer.h \
-  $(srcdir)/soplex/src/tracemethod.h \
   $(srcdir)/soplex/src/unitvector.h \
   $(srcdir)/soplex/src/updatevector.h \
+  $(srcdir)/soplex/src/vectorbase.h \
   $(srcdir)/soplex/src/vector.h \
-  $(srcdir)/soplex/src/vector_exact.h \
-  $(srcdir)/soplex/src/git_hash.cpp
+  $(srcdir)/soplex/src/git_hash.h
 
 pkgconfiglibdir = $(libdir)/pkgconfig
 pkgconfiglib_DATA = coinsoplex.pc

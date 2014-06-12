@@ -10,7 +10,7 @@
 
 AC_PREREQ(2.59)
 
-AC_INIT([ThirdPartySoplex],[1.3],[http://projects.coin-or.org/BuildTools/newticket])
+AC_INIT([ThirdPartySoplex],[trunk],[http://projects.coin-or.org/BuildTools/newticket])
 
 AC_COPYRIGHT([
 Copyright 2010,2011 Stefan Vigerske and others.

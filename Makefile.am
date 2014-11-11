@@ -165,6 +165,13 @@ thirdpartyinclude_HEADERS = \
   $(srcdir)/soplex/src/vector.h \
   $(srcdir)/soplex/src/git_hash.cpp
 
+if TIMER_IS_USERTIMER
+thirdpartyinclude_HEADERS += $(srcdir)/soplex/src/timerfactory.h \
+  $(srcdir)/soplex/src/notimer.h \
+  $(srcdir)/soplex/src/wallclocktimer.h \
+  $(srcdir)/soplex/src/usertimer.h
+endif
+
 pkgconfiglibdir = $(libdir)/pkgconfig
 pkgconfiglib_DATA = coinsoplex.pc
 

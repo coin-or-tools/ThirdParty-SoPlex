@@ -52,14 +52,16 @@ PRE_UNINSTALL = :
 POST_UNINSTALL = :
 build_triplet = @build@
 host_triplet = @host@
+@TIMER_IS_USERTIMER_TRUE@am__append_1 = soplex/src/usertimer.cpp soplex/src/wallclocktimer.cpp
+@TIMER_IS_USERTIMER_FALSE@am__append_2 = soplex/src/timer.cpp
 DIST_COMMON = $(am__configure_deps) $(srcdir)/BuildTools/Makemain.inc \
 	$(srcdir)/Makefile.am $(srcdir)/Makefile.in \
 	$(srcdir)/coinsoplex-uninstalled.pc.in \
 	$(srcdir)/coinsoplex.pc.in $(srcdir)/config_soplex.h.in \
 	$(thirdpartyinclude_HEADERS) $(top_srcdir)/configure \
 	config.guess config.sub depcomp install-sh ltmain.sh missing
-@HAVE_EXTERNALS_TRUE@am__append_1 = Dependencies
-@HAVE_EXTERNALS_TRUE@am__append_2 = .Dependencies-stamp
+@HAVE_EXTERNALS_TRUE@am__append_3 = Dependencies
+@HAVE_EXTERNALS_TRUE@am__append_4 = .Dependencies-stamp
 subdir = .
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/acinclude.m4 \
@@ -82,6 +84,39 @@ am__installdirs = "$(DESTDIR)$(libdir)" "$(DESTDIR)$(pkgconfiglibdir)" \
 libLTLIBRARIES_INSTALL = $(INSTALL)
 LTLIBRARIES = $(lib_LTLIBRARIES)
 libcoinsoplex_la_LIBADD =
+am__libcoinsoplex_la_SOURCES_DIST = soplex/src/changesoplex.cpp \
+	soplex/src/clufactor.cpp soplex/src/didxset.cpp \
+	soplex/src/enter.cpp soplex/src/gzstream.cpp \
+	soplex/src/idxset.cpp soplex/src/leave.cpp \
+	soplex/src/mpsinput.cpp soplex/src/nameset.cpp \
+	soplex/src/rational.cpp soplex/src/slufactor.cpp \
+	soplex/src/solverational.cpp soplex/src/solvereal.cpp \
+	soplex/src/soplex.cpp soplex/src/soplexlegacy.cpp \
+	soplex/src/spxautopr.cpp soplex/src/spxbasis.cpp \
+	soplex/src/spxboundflippingrt.cpp soplex/src/spxbounds.cpp \
+	soplex/src/spxchangebasis.cpp soplex/src/spxdantzigpr.cpp \
+	soplex/src/spxdefaultrt.cpp soplex/src/spxdefines.cpp \
+	soplex/src/spxdesc.cpp soplex/src/spxdevexpr.cpp \
+	soplex/src/spxequilisc.cpp soplex/src/spxfastrt.cpp \
+	soplex/src/spxfileio.cpp soplex/src/spxgeometsc.cpp \
+	soplex/src/spxgithash.cpp soplex/src/spxharrisrt.cpp \
+	soplex/src/spxhybridpr.cpp soplex/src/spxid.cpp \
+	soplex/src/spxlpbase_rational.cpp \
+	soplex/src/spxlpbase_real.cpp soplex/src/spxmainsm.cpp \
+	soplex/src/spxout.cpp soplex/src/spxparmultpr.cpp \
+	soplex/src/spxquality.cpp soplex/src/spxscaler.cpp \
+	soplex/src/spxshift.cpp soplex/src/spxsolver.cpp \
+	soplex/src/spxsolve.cpp soplex/src/spxstarter.cpp \
+	soplex/src/spxsteeppr.cpp soplex/src/spxsumst.cpp \
+	soplex/src/spxvecs.cpp soplex/src/spxvectorst.cpp \
+	soplex/src/spxweightpr.cpp soplex/src/spxweightst.cpp \
+	soplex/src/spxwritestate.cpp soplex/src/statistics.cpp \
+	soplex/src/unitvector.cpp soplex/src/updatevector.cpp \
+	soplex/src/usertimer.cpp soplex/src/wallclocktimer.cpp \
+	soplex/src/timer.cpp
+@TIMER_IS_USERTIMER_TRUE@am__objects_1 = usertimer.lo \
+@TIMER_IS_USERTIMER_TRUE@	wallclocktimer.lo
+@TIMER_IS_USERTIMER_FALSE@am__objects_2 = timer.lo
 am_libcoinsoplex_la_OBJECTS = changesoplex.lo clufactor.lo didxset.lo \
 	enter.lo gzstream.lo idxset.lo leave.lo mpsinput.lo nameset.lo \
 	rational.lo slufactor.lo solverational.lo solvereal.lo \
@@ -95,7 +130,8 @@ am_libcoinsoplex_la_OBJECTS = changesoplex.lo clufactor.lo didxset.lo \
 	spxshift.lo spxsolver.lo spxsolve.lo spxstarter.lo \
 	spxsteeppr.lo spxsumst.lo spxvecs.lo spxvectorst.lo \
 	spxweightpr.lo spxweightst.lo spxwritestate.lo statistics.lo \
-	timer.lo unitvector.lo updatevector.lo
+	unitvector.lo updatevector.lo $(am__objects_1) \
+	$(am__objects_2)
 libcoinsoplex_la_OBJECTS = $(am_libcoinsoplex_la_OBJECTS)
 depcomp = $(SHELL) $(top_srcdir)/depcomp
 am__depfiles_maybe = depfiles
@@ -108,7 +144,7 @@ CXXLD = $(CXX)
 CXXLINK = $(LIBTOOL) --tag=CXX --mode=link $(CXXLD) $(AM_CXXFLAGS) \
 	$(CXXFLAGS) $(AM_LDFLAGS) $(LDFLAGS) -o $@
 SOURCES = $(libcoinsoplex_la_SOURCES)
-DIST_SOURCES = $(libcoinsoplex_la_SOURCES)
+DIST_SOURCES = $(am__libcoinsoplex_la_SOURCES_DIST)
 pkgconfiglibDATA_INSTALL = $(INSTALL_DATA)
 DATA = $(pkgconfiglib_DATA)
 thirdpartyincludeHEADERS_INSTALL = $(INSTALL_HEADER)
@@ -218,6 +254,8 @@ SOPLEX_CFLAGS = @SOPLEX_CFLAGS@
 SOPLEX_PCLIBS = @SOPLEX_PCLIBS@
 SOPLEX_SVN_REV = @SOPLEX_SVN_REV@
 STRIP = @STRIP@
+TIMER_IS_USERTIMER_FALSE = @TIMER_IS_USERTIMER_FALSE@
+TIMER_IS_USERTIMER_TRUE = @TIMER_IS_USERTIMER_TRUE@
 VERSION = @VERSION@
 VPATH_DISTCLEANFILES = @VPATH_DISTCLEANFILES@
 abs_bin_dir = @abs_bin_dir@
@@ -276,65 +314,37 @@ sol_cc_compiler = @sol_cc_compiler@
 sysconfdir = @sysconfdir@
 target_alias = @target_alias@
 AUTOMAKE_OPTIONS = foreign
-EXTRA_DIST = $(am__append_1)
+EXTRA_DIST = $(am__append_3)
 lib_LTLIBRARIES = libcoinsoplex.la
-libcoinsoplex_la_SOURCES = \
-  soplex/src/changesoplex.cpp \
-  soplex/src/clufactor.cpp \
-  soplex/src/didxset.cpp \
-  soplex/src/enter.cpp \
-  soplex/src/gzstream.cpp \
-  soplex/src/idxset.cpp \
-  soplex/src/leave.cpp \
-  soplex/src/mpsinput.cpp \
-  soplex/src/nameset.cpp \
-  soplex/src/rational.cpp \
-  soplex/src/slufactor.cpp \
-  soplex/src/solverational.cpp \
-  soplex/src/solvereal.cpp \
-  soplex/src/soplex.cpp \
-  soplex/src/soplexlegacy.cpp \
-  soplex/src/spxautopr.cpp \
-  soplex/src/spxbasis.cpp \
-  soplex/src/spxboundflippingrt.cpp \
-  soplex/src/spxbounds.cpp \
-  soplex/src/spxchangebasis.cpp \
-  soplex/src/spxdantzigpr.cpp \
-  soplex/src/spxdefaultrt.cpp \
-  soplex/src/spxdefines.cpp \
-  soplex/src/spxdesc.cpp \
-  soplex/src/spxdevexpr.cpp \
-  soplex/src/spxequilisc.cpp \
-  soplex/src/spxfastrt.cpp \
-  soplex/src/spxfileio.cpp \
-  soplex/src/spxgeometsc.cpp \
-  soplex/src/spxgithash.cpp \
-  soplex/src/spxharrisrt.cpp \
-  soplex/src/spxhybridpr.cpp \
-  soplex/src/spxid.cpp \
-  soplex/src/spxlpbase_rational.cpp \
-  soplex/src/spxlpbase_real.cpp \
-  soplex/src/spxmainsm.cpp \
-  soplex/src/spxout.cpp \
-  soplex/src/spxparmultpr.cpp \
-  soplex/src/spxquality.cpp \
-  soplex/src/spxscaler.cpp \
-  soplex/src/spxshift.cpp \
-  soplex/src/spxsolver.cpp \
-  soplex/src/spxsolve.cpp \
-  soplex/src/spxstarter.cpp \
-  soplex/src/spxsteeppr.cpp \
-  soplex/src/spxsumst.cpp \
-  soplex/src/spxvecs.cpp \
-  soplex/src/spxvectorst.cpp \
-  soplex/src/spxweightpr.cpp \
-  soplex/src/spxweightst.cpp \
-  soplex/src/spxwritestate.cpp \
-  soplex/src/statistics.cpp \
-  soplex/src/timer.cpp \
-  soplex/src/unitvector.cpp \
-  soplex/src/updatevector.cpp
-
+libcoinsoplex_la_SOURCES = soplex/src/changesoplex.cpp \
+	soplex/src/clufactor.cpp soplex/src/didxset.cpp \
+	soplex/src/enter.cpp soplex/src/gzstream.cpp \
+	soplex/src/idxset.cpp soplex/src/leave.cpp \
+	soplex/src/mpsinput.cpp soplex/src/nameset.cpp \
+	soplex/src/rational.cpp soplex/src/slufactor.cpp \
+	soplex/src/solverational.cpp soplex/src/solvereal.cpp \
+	soplex/src/soplex.cpp soplex/src/soplexlegacy.cpp \
+	soplex/src/spxautopr.cpp soplex/src/spxbasis.cpp \
+	soplex/src/spxboundflippingrt.cpp soplex/src/spxbounds.cpp \
+	soplex/src/spxchangebasis.cpp soplex/src/spxdantzigpr.cpp \
+	soplex/src/spxdefaultrt.cpp soplex/src/spxdefines.cpp \
+	soplex/src/spxdesc.cpp soplex/src/spxdevexpr.cpp \
+	soplex/src/spxequilisc.cpp soplex/src/spxfastrt.cpp \
+	soplex/src/spxfileio.cpp soplex/src/spxgeometsc.cpp \
+	soplex/src/spxgithash.cpp soplex/src/spxharrisrt.cpp \
+	soplex/src/spxhybridpr.cpp soplex/src/spxid.cpp \
+	soplex/src/spxlpbase_rational.cpp \
+	soplex/src/spxlpbase_real.cpp soplex/src/spxmainsm.cpp \
+	soplex/src/spxout.cpp soplex/src/spxparmultpr.cpp \
+	soplex/src/spxquality.cpp soplex/src/spxscaler.cpp \
+	soplex/src/spxshift.cpp soplex/src/spxsolver.cpp \
+	soplex/src/spxsolve.cpp soplex/src/spxstarter.cpp \
+	soplex/src/spxsteeppr.cpp soplex/src/spxsumst.cpp \
+	soplex/src/spxvecs.cpp soplex/src/spxvectorst.cpp \
+	soplex/src/spxweightpr.cpp soplex/src/spxweightst.cpp \
+	soplex/src/spxwritestate.cpp soplex/src/statistics.cpp \
+	soplex/src/unitvector.cpp soplex/src/updatevector.cpp \
+	$(am__append_1) $(am__append_2)
 AM_CPPFLAGS = -I`$(CYGPATH_W) $(srcdir)/soplex/src`
 DEFAULT_INCLUDES = -I. -I`$(CYGPATH_W) $(srcdir)`
 libcoinsoplex_la_LDFLAGS = $(LT_LDFLAGS)
@@ -433,7 +443,7 @@ pkgconfiglib_DATA = coinsoplex.pc
 ########################################################################
 
 # Files that are generated and should be cleaned with make distclean
-DISTCLEANFILES = $(MAKEOKFILE) $(am__append_2) $(VPATH_DISTCLEANFILES)
+DISTCLEANFILES = $(MAKEOKFILE) $(am__append_4) $(VPATH_DISTCLEANFILES)
 DocFiles = README AUTHORS LICENSE
 DocInstallDir = $(datadir)/coin/doc/$(PACKAGE_NAME)
 all: config_soplex.h
@@ -586,6 +596,8 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/timer.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/unitvector.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/updatevector.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/usertimer.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/wallclocktimer.Plo@am__quote@
 
 .cpp.o:
 @am__fastdepCXX_TRUE@	if $(CXXCOMPILE) -MT $@ -MD -MP -MF "$(DEPDIR)/$*.Tpo" -c -o $@ $<; \
@@ -972,13 +984,6 @@ statistics.lo: soplex/src/statistics.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o statistics.lo `test -f 'soplex/src/statistics.cpp' || echo '$(srcdir)/'`soplex/src/statistics.cpp
 
-timer.lo: soplex/src/timer.cpp
-@am__fastdepCXX_TRUE@	if $(LIBTOOL) --tag=CXX --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT timer.lo -MD -MP -MF "$(DEPDIR)/timer.Tpo" -c -o timer.lo `test -f 'soplex/src/timer.cpp' || echo '$(srcdir)/'`soplex/src/timer.cpp; \
-@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/timer.Tpo" "$(DEPDIR)/timer.Plo"; else rm -f "$(DEPDIR)/timer.Tpo"; exit 1; fi
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='soplex/src/timer.cpp' object='timer.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o timer.lo `test -f 'soplex/src/timer.cpp' || echo '$(srcdir)/'`soplex/src/timer.cpp
-
 unitvector.lo: soplex/src/unitvector.cpp
 @am__fastdepCXX_TRUE@	if $(LIBTOOL) --tag=CXX --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT unitvector.lo -MD -MP -MF "$(DEPDIR)/unitvector.Tpo" -c -o unitvector.lo `test -f 'soplex/src/unitvector.cpp' || echo '$(srcdir)/'`soplex/src/unitvector.cpp; \
 @am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/unitvector.Tpo" "$(DEPDIR)/unitvector.Plo"; else rm -f "$(DEPDIR)/unitvector.Tpo"; exit 1; fi
@@ -992,6 +997,27 @@ updatevector.lo: soplex/src/updatevector.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='soplex/src/updatevector.cpp' object='updatevector.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o updatevector.lo `test -f 'soplex/src/updatevector.cpp' || echo '$(srcdir)/'`soplex/src/updatevector.cpp
+
+usertimer.lo: soplex/src/usertimer.cpp
+@am__fastdepCXX_TRUE@	if $(LIBTOOL) --tag=CXX --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT usertimer.lo -MD -MP -MF "$(DEPDIR)/usertimer.Tpo" -c -o usertimer.lo `test -f 'soplex/src/usertimer.cpp' || echo '$(srcdir)/'`soplex/src/usertimer.cpp; \
+@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/usertimer.Tpo" "$(DEPDIR)/usertimer.Plo"; else rm -f "$(DEPDIR)/usertimer.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='soplex/src/usertimer.cpp' object='usertimer.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o usertimer.lo `test -f 'soplex/src/usertimer.cpp' || echo '$(srcdir)/'`soplex/src/usertimer.cpp
+
+wallclocktimer.lo: soplex/src/wallclocktimer.cpp
+@am__fastdepCXX_TRUE@	if $(LIBTOOL) --tag=CXX --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT wallclocktimer.lo -MD -MP -MF "$(DEPDIR)/wallclocktimer.Tpo" -c -o wallclocktimer.lo `test -f 'soplex/src/wallclocktimer.cpp' || echo '$(srcdir)/'`soplex/src/wallclocktimer.cpp; \
+@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/wallclocktimer.Tpo" "$(DEPDIR)/wallclocktimer.Plo"; else rm -f "$(DEPDIR)/wallclocktimer.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='soplex/src/wallclocktimer.cpp' object='wallclocktimer.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o wallclocktimer.lo `test -f 'soplex/src/wallclocktimer.cpp' || echo '$(srcdir)/'`soplex/src/wallclocktimer.cpp
+
+timer.lo: soplex/src/timer.cpp
+@am__fastdepCXX_TRUE@	if $(LIBTOOL) --tag=CXX --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT timer.lo -MD -MP -MF "$(DEPDIR)/timer.Tpo" -c -o timer.lo `test -f 'soplex/src/timer.cpp' || echo '$(srcdir)/'`soplex/src/timer.cpp; \
+@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/timer.Tpo" "$(DEPDIR)/timer.Plo"; else rm -f "$(DEPDIR)/timer.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='soplex/src/timer.cpp' object='timer.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o timer.lo `test -f 'soplex/src/timer.cpp' || echo '$(srcdir)/'`soplex/src/timer.cpp
 
 mostlyclean-libtool:
 	-rm -f *.lo

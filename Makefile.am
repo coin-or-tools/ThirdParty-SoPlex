@@ -63,9 +63,14 @@ libcoinsoplex_la_SOURCES = \
   soplex/src/spxweightst.cpp \
   soplex/src/spxwritestate.cpp \
   soplex/src/statistics.cpp \
-  soplex/src/timer.cpp \
   soplex/src/unitvector.cpp \
   soplex/src/updatevector.cpp
+
+if TIMER_IS_USERTIMER
+libcoinsoplex_la_SOURCES += soplex/src/usertimer.cpp soplex/src/wallclocktimer.cpp
+else
+libcoinsoplex_la_SOURCES += soplex/src/timer.cpp
+endif
 
 AM_CPPFLAGS = -I`$(CYGPATH_W) $(srcdir)/soplex/src`
 

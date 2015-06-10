@@ -83,9 +83,6 @@ esac
 CXXFLAGS="$CXXFLAGS $SOPLEX_CFLAGS"
 AC_SUBST(SOPLEX_CFLAGS)
 
-# in recent SoPlex 2.0 versions, timer.cpp has been renamed to usertimer.cpp
-AM_CONDITIONAL(TIMER_IS_USERTIMER, [test -e "$srcdir/soplex/src/usertimer.cpp"])
-
 # TODO SoPlex may not be threadsafe by default; adding -DDISABLE_VERBOSITY could help 
 
 ###########################################################################

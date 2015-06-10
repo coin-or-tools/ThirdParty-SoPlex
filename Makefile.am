@@ -13,6 +13,7 @@ lib_LTLIBRARIES = libcoinsoplex.la
 libcoinsoplex_la_SOURCES = \
   soplex/src/changesoplex.cpp \
   soplex/src/clufactor.cpp \
+  soplex/src/clufactor_rational.cpp \
   soplex/src/didxset.cpp \
   soplex/src/enter.cpp \
   soplex/src/gzstream.cpp \
@@ -21,7 +22,9 @@ libcoinsoplex_la_SOURCES = \
   soplex/src/mpsinput.cpp \
   soplex/src/nameset.cpp \
   soplex/src/rational.cpp \
+  soplex/src/ratrecon.cpp \
   soplex/src/slufactor.cpp \
+  soplex/src/slufactor_rational.cpp \
   soplex/src/solverational.cpp \
   soplex/src/solvereal.cpp \
   soplex/src/soplex.cpp \
@@ -63,14 +66,9 @@ libcoinsoplex_la_SOURCES = \
   soplex/src/spxweightst.cpp \
   soplex/src/spxwritestate.cpp \
   soplex/src/statistics.cpp \
-  soplex/src/unitvector.cpp \
-  soplex/src/updatevector.cpp
-
-if TIMER_IS_USERTIMER
-libcoinsoplex_la_SOURCES += soplex/src/usertimer.cpp soplex/src/wallclocktimer.cpp
-else
-libcoinsoplex_la_SOURCES += soplex/src/timer.cpp
-endif
+  soplex/src/usertimer.cpp \
+  soplex/src/updatevector.cpp \
+  soplex/src/wallclocktimer.cpp
 
 AM_CPPFLAGS = -I`$(CYGPATH_W) $(srcdir)/soplex/src`
 
@@ -84,6 +82,7 @@ thirdpartyinclude_HEADERS = \
   $(srcdir)/soplex/src/basevectors.h \
   $(srcdir)/soplex/src/classarray.h \
   $(srcdir)/soplex/src/clufactor.h \
+  $(srcdir)/soplex/src/clufactor_rational.h \
   $(srcdir)/soplex/src/cring.h \
   $(srcdir)/soplex/src/dataarray.h \
   $(srcdir)/soplex/src/datahashtable.h \
@@ -112,7 +111,9 @@ thirdpartyinclude_HEADERS = \
   $(srcdir)/soplex/src/random.h \
   $(srcdir)/soplex/src/rational.h \
   $(srcdir)/soplex/src/slinsolver.h \
+  $(srcdir)/soplex/src/slinsolver_rational.h \
   $(srcdir)/soplex/src/slufactor.h \
+  $(srcdir)/soplex/src/slufactor_rational.h \
   $(srcdir)/soplex/src/solbase.h \
   $(srcdir)/soplex/src/sol.h \
   $(srcdir)/soplex/src/soplex.h \
@@ -159,18 +160,17 @@ thirdpartyinclude_HEADERS = \
   $(srcdir)/soplex/src/svsetbase.h \
   $(srcdir)/soplex/src/svset.h \
   $(srcdir)/soplex/src/timer.h \
+  $(srcdir)/soplex/src/unitvectorbase.h \
   $(srcdir)/soplex/src/unitvector.h \
   $(srcdir)/soplex/src/updatevector.h \
   $(srcdir)/soplex/src/vectorbase.h \
   $(srcdir)/soplex/src/vector.h \
   $(srcdir)/soplex/src/git_hash.cpp
 
-if TIMER_IS_USERTIMER
-thirdpartyinclude_HEADERS += $(srcdir)/soplex/src/timerfactory.h \
-  $(srcdir)/soplex/src/notimer.h \
-  $(srcdir)/soplex/src/wallclocktimer.h \
-  $(srcdir)/soplex/src/usertimer.h
-endif
+#thirdpartyinclude_HEADERS += $(srcdir)/soplex/src/timerfactory.h \
+#  $(srcdir)/soplex/src/notimer.h \
+#  $(srcdir)/soplex/src/wallclocktimer.h \
+#  $(srcdir)/soplex/src/usertimer.h
 
 pkgconfiglibdir = $(libdir)/pkgconfig
 pkgconfiglib_DATA = coinsoplex.pc

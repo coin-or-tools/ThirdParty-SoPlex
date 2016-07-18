@@ -59,6 +59,7 @@ AC_COIN_INIT_AUTO_TOOLS
 AC_COIN_CHECK_GNU_ZLIB(SOPLEX)
 if test $coin_has_zlib = "yes"; then
   CXXFLAGS="$CXXFLAGS -DSOPLEX_WITH_ZLIB"
+  SOPLEX_LIBS="-lz $SOPLEX_LIBS"
 fi
 
 AC_COIN_CHECK_GMP
@@ -68,6 +69,7 @@ if test $coin_has_gmp = yes; then
   SOPLEX_PCLIBS="-lgmp $SOPLEX_PCLIBS"
   SOPLEX_LIBS_INSTALLED="-lgmp $SOPLEX_LIBS_INSTALLED"
 fi
+AC_SUBST(SOPLEX_LIBS)
 
 # SoPlex requires C++ 2011 standard (or -DSOPLEX_LEGACY)
 SOPLEX_CFLAGS=

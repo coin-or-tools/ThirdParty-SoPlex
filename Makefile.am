@@ -25,6 +25,7 @@ libcoinsoplex_la_SOURCES = \
   soplex/src/ratrecon.cpp \
   soplex/src/slufactor.cpp \
   soplex/src/slufactor_rational.cpp \
+  soplex/src/solvedbds.cpp \
   soplex/src/solverational.cpp \
   soplex/src/solvereal.cpp \
   soplex/src/soplex.cpp \
@@ -47,11 +48,13 @@ libcoinsoplex_la_SOURCES = \
   soplex/src/spxharrisrt.cpp \
   soplex/src/spxhybridpr.cpp \
   soplex/src/spxid.cpp \
+  soplex/src/spxleastsqsc.cpp \
   soplex/src/spxlpbase_rational.cpp \
   soplex/src/spxlpbase_real.cpp \
   soplex/src/spxmainsm.cpp \
   soplex/src/spxout.cpp \
   soplex/src/spxparmultpr.cpp \
+  soplex/src/spxproof.cpp \
   soplex/src/spxquality.cpp \
   soplex/src/spxscaler.cpp \
   soplex/src/spxshift.cpp \
@@ -66,8 +69,8 @@ libcoinsoplex_la_SOURCES = \
   soplex/src/spxweightst.cpp \
   soplex/src/spxwritestate.cpp \
   soplex/src/statistics.cpp \
-  soplex/src/usertimer.cpp \
   soplex/src/updatevector.cpp \
+  soplex/src/usertimer.cpp \
   soplex/src/wallclocktimer.cpp
 
 AM_CPPFLAGS = -I`$(CYGPATH_W) $(srcdir)/soplex/src`
@@ -114,6 +117,7 @@ thirdpartyinclude_HEADERS = \
   $(srcdir)/soplex/src/notimer.h \
   $(srcdir)/soplex/src/mpsinput.h \
   $(srcdir)/soplex/src/nameset.h \
+  $(srcdir)/soplex/src/notimer.h \
   $(srcdir)/soplex/src/random.h \
   $(srcdir)/soplex/src/rational.h \
   $(srcdir)/soplex/src/slinsolver.h \
@@ -141,6 +145,7 @@ thirdpartyinclude_HEADERS = \
   $(srcdir)/soplex/src/spxharrisrt.h \
   $(srcdir)/soplex/src/spxhybridpr.h \
   $(srcdir)/soplex/src/spxid.h \
+  $(srcdir)/soplex/src/spxleastsqsc.h \
   $(srcdir)/soplex/src/spxlpbase.h \
   $(srcdir)/soplex/src/spxlp.h \
   $(srcdir)/soplex/src/spxmainsm.h \

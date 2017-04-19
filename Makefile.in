@@ -87,18 +87,19 @@ am__DEPENDENCIES_1 =
 am_libcoinsoplex_la_OBJECTS = changesoplex.lo clufactor.lo \
 	clufactor_rational.lo didxset.lo enter.lo gzstream.lo \
 	idxset.lo leave.lo mpsinput.lo nameset.lo rational.lo \
-	ratrecon.lo slufactor.lo slufactor_rational.lo \
+	ratrecon.lo slufactor.lo slufactor_rational.lo solvedbds.lo \
 	solverational.lo solvereal.lo soplex.lo soplexlegacy.lo \
 	spxautopr.lo spxbasis.lo spxboundflippingrt.lo spxbounds.lo \
 	spxchangebasis.lo spxdantzigpr.lo spxdefaultrt.lo \
 	spxdefines.lo spxdesc.lo spxdevexpr.lo spxequilisc.lo \
 	spxfastrt.lo spxfileio.lo spxgeometsc.lo spxgithash.lo \
-	spxharrisrt.lo spxhybridpr.lo spxid.lo spxlpbase_rational.lo \
-	spxlpbase_real.lo spxmainsm.lo spxout.lo spxparmultpr.lo \
-	spxquality.lo spxscaler.lo spxshift.lo spxsolver.lo \
-	spxsolve.lo spxstarter.lo spxsteeppr.lo spxsumst.lo spxvecs.lo \
-	spxvectorst.lo spxweightpr.lo spxweightst.lo spxwritestate.lo \
-	statistics.lo usertimer.lo updatevector.lo wallclocktimer.lo
+	spxharrisrt.lo spxhybridpr.lo spxid.lo spxleastsqsc.lo \
+	spxlpbase_rational.lo spxlpbase_real.lo spxmainsm.lo spxout.lo \
+	spxparmultpr.lo spxproof.lo spxquality.lo spxscaler.lo \
+	spxshift.lo spxsolver.lo spxsolve.lo spxstarter.lo \
+	spxsteeppr.lo spxsumst.lo spxvecs.lo spxvectorst.lo \
+	spxweightpr.lo spxweightst.lo spxwritestate.lo statistics.lo \
+	updatevector.lo usertimer.lo wallclocktimer.lo
 libcoinsoplex_la_OBJECTS = $(am_libcoinsoplex_la_OBJECTS)
 depcomp = $(SHELL) $(top_srcdir)/depcomp
 am__depfiles_maybe = depfiles
@@ -297,6 +298,7 @@ libcoinsoplex_la_SOURCES = \
   soplex/src/ratrecon.cpp \
   soplex/src/slufactor.cpp \
   soplex/src/slufactor_rational.cpp \
+  soplex/src/solvedbds.cpp \
   soplex/src/solverational.cpp \
   soplex/src/solvereal.cpp \
   soplex/src/soplex.cpp \
@@ -319,11 +321,13 @@ libcoinsoplex_la_SOURCES = \
   soplex/src/spxharrisrt.cpp \
   soplex/src/spxhybridpr.cpp \
   soplex/src/spxid.cpp \
+  soplex/src/spxleastsqsc.cpp \
   soplex/src/spxlpbase_rational.cpp \
   soplex/src/spxlpbase_real.cpp \
   soplex/src/spxmainsm.cpp \
   soplex/src/spxout.cpp \
   soplex/src/spxparmultpr.cpp \
+  soplex/src/spxproof.cpp \
   soplex/src/spxquality.cpp \
   soplex/src/spxscaler.cpp \
   soplex/src/spxshift.cpp \
@@ -338,8 +342,8 @@ libcoinsoplex_la_SOURCES = \
   soplex/src/spxweightst.cpp \
   soplex/src/spxwritestate.cpp \
   soplex/src/statistics.cpp \
-  soplex/src/usertimer.cpp \
   soplex/src/updatevector.cpp \
+  soplex/src/usertimer.cpp \
   soplex/src/wallclocktimer.cpp
 
 AM_CPPFLAGS = -I`$(CYGPATH_W) $(srcdir)/soplex/src`
@@ -381,6 +385,7 @@ thirdpartyinclude_HEADERS = \
   $(srcdir)/soplex/src/notimer.h \
   $(srcdir)/soplex/src/mpsinput.h \
   $(srcdir)/soplex/src/nameset.h \
+  $(srcdir)/soplex/src/notimer.h \
   $(srcdir)/soplex/src/random.h \
   $(srcdir)/soplex/src/rational.h \
   $(srcdir)/soplex/src/slinsolver.h \
@@ -408,6 +413,7 @@ thirdpartyinclude_HEADERS = \
   $(srcdir)/soplex/src/spxharrisrt.h \
   $(srcdir)/soplex/src/spxhybridpr.h \
   $(srcdir)/soplex/src/spxid.h \
+  $(srcdir)/soplex/src/spxleastsqsc.h \
   $(srcdir)/soplex/src/spxlpbase.h \
   $(srcdir)/soplex/src/spxlp.h \
   $(srcdir)/soplex/src/spxmainsm.h \
@@ -565,6 +571,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/ratrecon.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/slufactor.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/slufactor_rational.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/solvedbds.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/solverational.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/solvereal.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/soplex.Plo@am__quote@
@@ -587,11 +594,13 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/spxharrisrt.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/spxhybridpr.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/spxid.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/spxleastsqsc.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/spxlpbase_rational.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/spxlpbase_real.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/spxmainsm.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/spxout.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/spxparmultpr.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/spxproof.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/spxquality.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/spxscaler.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/spxshift.Plo@am__quote@
@@ -728,6 +737,13 @@ slufactor_rational.lo: soplex/src/slufactor_rational.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='soplex/src/slufactor_rational.cpp' object='slufactor_rational.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o slufactor_rational.lo `test -f 'soplex/src/slufactor_rational.cpp' || echo '$(srcdir)/'`soplex/src/slufactor_rational.cpp
+
+solvedbds.lo: soplex/src/solvedbds.cpp
+@am__fastdepCXX_TRUE@	if $(LIBTOOL) --tag=CXX --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT solvedbds.lo -MD -MP -MF "$(DEPDIR)/solvedbds.Tpo" -c -o solvedbds.lo `test -f 'soplex/src/solvedbds.cpp' || echo '$(srcdir)/'`soplex/src/solvedbds.cpp; \
+@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/solvedbds.Tpo" "$(DEPDIR)/solvedbds.Plo"; else rm -f "$(DEPDIR)/solvedbds.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='soplex/src/solvedbds.cpp' object='solvedbds.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o solvedbds.lo `test -f 'soplex/src/solvedbds.cpp' || echo '$(srcdir)/'`soplex/src/solvedbds.cpp
 
 solverational.lo: soplex/src/solverational.cpp
 @am__fastdepCXX_TRUE@	if $(LIBTOOL) --tag=CXX --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT solverational.lo -MD -MP -MF "$(DEPDIR)/solverational.Tpo" -c -o solverational.lo `test -f 'soplex/src/solverational.cpp' || echo '$(srcdir)/'`soplex/src/solverational.cpp; \
@@ -883,6 +899,13 @@ spxid.lo: soplex/src/spxid.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o spxid.lo `test -f 'soplex/src/spxid.cpp' || echo '$(srcdir)/'`soplex/src/spxid.cpp
 
+spxleastsqsc.lo: soplex/src/spxleastsqsc.cpp
+@am__fastdepCXX_TRUE@	if $(LIBTOOL) --tag=CXX --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT spxleastsqsc.lo -MD -MP -MF "$(DEPDIR)/spxleastsqsc.Tpo" -c -o spxleastsqsc.lo `test -f 'soplex/src/spxleastsqsc.cpp' || echo '$(srcdir)/'`soplex/src/spxleastsqsc.cpp; \
+@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/spxleastsqsc.Tpo" "$(DEPDIR)/spxleastsqsc.Plo"; else rm -f "$(DEPDIR)/spxleastsqsc.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='soplex/src/spxleastsqsc.cpp' object='spxleastsqsc.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o spxleastsqsc.lo `test -f 'soplex/src/spxleastsqsc.cpp' || echo '$(srcdir)/'`soplex/src/spxleastsqsc.cpp
+
 spxlpbase_rational.lo: soplex/src/spxlpbase_rational.cpp
 @am__fastdepCXX_TRUE@	if $(LIBTOOL) --tag=CXX --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT spxlpbase_rational.lo -MD -MP -MF "$(DEPDIR)/spxlpbase_rational.Tpo" -c -o spxlpbase_rational.lo `test -f 'soplex/src/spxlpbase_rational.cpp' || echo '$(srcdir)/'`soplex/src/spxlpbase_rational.cpp; \
 @am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/spxlpbase_rational.Tpo" "$(DEPDIR)/spxlpbase_rational.Plo"; else rm -f "$(DEPDIR)/spxlpbase_rational.Tpo"; exit 1; fi
@@ -917,6 +940,13 @@ spxparmultpr.lo: soplex/src/spxparmultpr.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='soplex/src/spxparmultpr.cpp' object='spxparmultpr.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o spxparmultpr.lo `test -f 'soplex/src/spxparmultpr.cpp' || echo '$(srcdir)/'`soplex/src/spxparmultpr.cpp
+
+spxproof.lo: soplex/src/spxproof.cpp
+@am__fastdepCXX_TRUE@	if $(LIBTOOL) --tag=CXX --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT spxproof.lo -MD -MP -MF "$(DEPDIR)/spxproof.Tpo" -c -o spxproof.lo `test -f 'soplex/src/spxproof.cpp' || echo '$(srcdir)/'`soplex/src/spxproof.cpp; \
+@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/spxproof.Tpo" "$(DEPDIR)/spxproof.Plo"; else rm -f "$(DEPDIR)/spxproof.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='soplex/src/spxproof.cpp' object='spxproof.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o spxproof.lo `test -f 'soplex/src/spxproof.cpp' || echo '$(srcdir)/'`soplex/src/spxproof.cpp
 
 spxquality.lo: soplex/src/spxquality.cpp
 @am__fastdepCXX_TRUE@	if $(LIBTOOL) --tag=CXX --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT spxquality.lo -MD -MP -MF "$(DEPDIR)/spxquality.Tpo" -c -o spxquality.lo `test -f 'soplex/src/spxquality.cpp' || echo '$(srcdir)/'`soplex/src/spxquality.cpp; \
@@ -1016,19 +1046,19 @@ statistics.lo: soplex/src/statistics.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o statistics.lo `test -f 'soplex/src/statistics.cpp' || echo '$(srcdir)/'`soplex/src/statistics.cpp
 
-usertimer.lo: soplex/src/usertimer.cpp
-@am__fastdepCXX_TRUE@	if $(LIBTOOL) --tag=CXX --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT usertimer.lo -MD -MP -MF "$(DEPDIR)/usertimer.Tpo" -c -o usertimer.lo `test -f 'soplex/src/usertimer.cpp' || echo '$(srcdir)/'`soplex/src/usertimer.cpp; \
-@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/usertimer.Tpo" "$(DEPDIR)/usertimer.Plo"; else rm -f "$(DEPDIR)/usertimer.Tpo"; exit 1; fi
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='soplex/src/usertimer.cpp' object='usertimer.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o usertimer.lo `test -f 'soplex/src/usertimer.cpp' || echo '$(srcdir)/'`soplex/src/usertimer.cpp
-
 updatevector.lo: soplex/src/updatevector.cpp
 @am__fastdepCXX_TRUE@	if $(LIBTOOL) --tag=CXX --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT updatevector.lo -MD -MP -MF "$(DEPDIR)/updatevector.Tpo" -c -o updatevector.lo `test -f 'soplex/src/updatevector.cpp' || echo '$(srcdir)/'`soplex/src/updatevector.cpp; \
 @am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/updatevector.Tpo" "$(DEPDIR)/updatevector.Plo"; else rm -f "$(DEPDIR)/updatevector.Tpo"; exit 1; fi
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='soplex/src/updatevector.cpp' object='updatevector.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o updatevector.lo `test -f 'soplex/src/updatevector.cpp' || echo '$(srcdir)/'`soplex/src/updatevector.cpp
+
+usertimer.lo: soplex/src/usertimer.cpp
+@am__fastdepCXX_TRUE@	if $(LIBTOOL) --tag=CXX --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT usertimer.lo -MD -MP -MF "$(DEPDIR)/usertimer.Tpo" -c -o usertimer.lo `test -f 'soplex/src/usertimer.cpp' || echo '$(srcdir)/'`soplex/src/usertimer.cpp; \
+@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/usertimer.Tpo" "$(DEPDIR)/usertimer.Plo"; else rm -f "$(DEPDIR)/usertimer.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='soplex/src/usertimer.cpp' object='usertimer.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o usertimer.lo `test -f 'soplex/src/usertimer.cpp' || echo '$(srcdir)/'`soplex/src/usertimer.cpp
 
 wallclocktimer.lo: soplex/src/wallclocktimer.cpp
 @am__fastdepCXX_TRUE@	if $(LIBTOOL) --tag=CXX --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT wallclocktimer.lo -MD -MP -MF "$(DEPDIR)/wallclocktimer.Tpo" -c -o wallclocktimer.lo `test -f 'soplex/src/wallclocktimer.cpp' || echo '$(srcdir)/'`soplex/src/wallclocktimer.cpp; \

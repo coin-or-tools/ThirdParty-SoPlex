@@ -95,11 +95,11 @@ am_libcoinsoplex_la_OBJECTS = changesoplex.lo clufactor.lo \
 	spxfastrt.lo spxfileio.lo spxgeometsc.lo spxgithash.lo \
 	spxharrisrt.lo spxhybridpr.lo spxid.lo spxleastsqsc.lo \
 	spxlpbase_rational.lo spxlpbase_real.lo spxmainsm.lo spxout.lo \
-	spxparmultpr.lo spxproof.lo spxquality.lo spxscaler.lo \
-	spxshift.lo spxsolver.lo spxsolve.lo spxstarter.lo \
-	spxsteeppr.lo spxsumst.lo spxvecs.lo spxvectorst.lo \
-	spxweightpr.lo spxweightst.lo spxwritestate.lo statistics.lo \
-	updatevector.lo usertimer.lo wallclocktimer.lo
+	spxparmultpr.lo spxquality.lo spxscaler.lo spxshift.lo \
+	spxsolver.lo spxsolve.lo spxstarter.lo spxsteeppr.lo \
+	spxsumst.lo spxvecs.lo spxvectorst.lo spxweightpr.lo \
+	spxweightst.lo spxwritestate.lo statistics.lo updatevector.lo \
+	usertimer.lo wallclocktimer.lo
 libcoinsoplex_la_OBJECTS = $(am_libcoinsoplex_la_OBJECTS)
 depcomp = $(SHELL) $(top_srcdir)/depcomp
 am__depfiles_maybe = depfiles
@@ -327,7 +327,6 @@ libcoinsoplex_la_SOURCES = \
   soplex/src/spxmainsm.cpp \
   soplex/src/spxout.cpp \
   soplex/src/spxparmultpr.cpp \
-  soplex/src/spxproof.cpp \
   soplex/src/spxquality.cpp \
   soplex/src/spxscaler.cpp \
   soplex/src/spxshift.cpp \
@@ -600,7 +599,6 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/spxmainsm.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/spxout.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/spxparmultpr.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/spxproof.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/spxquality.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/spxscaler.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/spxshift.Plo@am__quote@
@@ -940,13 +938,6 @@ spxparmultpr.lo: soplex/src/spxparmultpr.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='soplex/src/spxparmultpr.cpp' object='spxparmultpr.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o spxparmultpr.lo `test -f 'soplex/src/spxparmultpr.cpp' || echo '$(srcdir)/'`soplex/src/spxparmultpr.cpp
-
-spxproof.lo: soplex/src/spxproof.cpp
-@am__fastdepCXX_TRUE@	if $(LIBTOOL) --tag=CXX --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT spxproof.lo -MD -MP -MF "$(DEPDIR)/spxproof.Tpo" -c -o spxproof.lo `test -f 'soplex/src/spxproof.cpp' || echo '$(srcdir)/'`soplex/src/spxproof.cpp; \
-@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/spxproof.Tpo" "$(DEPDIR)/spxproof.Plo"; else rm -f "$(DEPDIR)/spxproof.Tpo"; exit 1; fi
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='soplex/src/spxproof.cpp' object='spxproof.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o spxproof.lo `test -f 'soplex/src/spxproof.cpp' || echo '$(srcdir)/'`soplex/src/spxproof.cpp
 
 spxquality.lo: soplex/src/spxquality.cpp
 @am__fastdepCXX_TRUE@	if $(LIBTOOL) --tag=CXX --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT spxquality.lo -MD -MP -MF "$(DEPDIR)/spxquality.Tpo" -c -o spxquality.lo `test -f 'soplex/src/spxquality.cpp' || echo '$(srcdir)/'`soplex/src/spxquality.cpp; \

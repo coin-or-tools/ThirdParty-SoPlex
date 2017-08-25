@@ -54,7 +54,6 @@ libcoinsoplex_la_SOURCES = \
   soplex/src/spxmainsm.cpp \
   soplex/src/spxout.cpp \
   soplex/src/spxparmultpr.cpp \
-  soplex/src/spxproof.cpp \
   soplex/src/spxquality.cpp \
   soplex/src/spxscaler.cpp \
   soplex/src/spxshift.cpp \

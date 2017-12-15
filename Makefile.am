@@ -113,7 +113,6 @@ thirdpartyinclude_HEADERS = \
   $(srcdir)/soplex/src/lprow.h \
   $(srcdir)/soplex/src/lprowsetbase.h \
   $(srcdir)/soplex/src/lprowset.h \
-  $(srcdir)/soplex/src/notimer.h \
   $(srcdir)/soplex/src/mpsinput.h \
   $(srcdir)/soplex/src/nameset.h \
   $(srcdir)/soplex/src/notimer.h \

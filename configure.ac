@@ -30,6 +30,9 @@ AC_PREFIX_DEFAULT([`pwd`])
 
 AC_COIN_PROJECTDIR_INIT(SoPlex)
 
+PACKAGE_VERSION_PC=${coin_majorver}.${coin_minorver}.${coin_releasever}
+AC_SUBST(PACKAGE_VERSION_PC)
+
 #############################################################################
 #                         Standard build tool stuff                         #
 #############################################################################

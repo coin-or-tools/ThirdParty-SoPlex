@@ -71,20 +71,6 @@ if test $coin_has_gmp = yes; then
 fi
 AC_SUBST(SOPLEX_LIBS)
 
-# SoPlex requires C++ 2011 standard (or -DSOPLEX_LEGACY)
-SOPLEX_CFLAGS=
-case "$CXX" in
-  cl* | */cl* | CL* | */CL* ) ;;
-  icl* | */icl* | ICL* | */ICL* )  # Intel on Windows
-    SOPLEX_CFLAGS="-Qstd=c++0x"
-    ;;
-  * )  # GCC, clang, Intel on Linux, ...
-    SOPLEX_CFLAGS="-std=c++0x"
-    ;;
-esac
-CXXFLAGS="$CXXFLAGS $SOPLEX_CFLAGS"
-AC_SUBST(SOPLEX_CFLAGS)
-
 # TODO SoPlex may not be threadsafe by default; adding -DDISABLE_VERBOSITY could help 
 
 ###########################################################################

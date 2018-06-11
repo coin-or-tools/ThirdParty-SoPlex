@@ -8,4 +8,4 @@ Description: Sequential object-oriented Simplex
 URL: https://projects.coin-or.org/BuildTools
 Version: @PACKAGE_VERSION@
 Libs: -L${libdir} -lcoinsoplex @SOPLEX_PCLIBS@
-Cflags: -I${includedir} @SOPLEX_CFLAGS@
+Cflags: -I${includedir}

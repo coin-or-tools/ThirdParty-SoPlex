@@ -182,6 +182,11 @@ thirdpartyspxinclude_HEADERS = \
   soplex/src/soplex/wallclocktimer.h \
   soplex/src/soplex/git_hash.cpp
 
+# soplex/stablesum.h was added with SoPlex 4.0.1
+if HAVE_STABLESUM_H
+  thirdpartyspxinclude_HEADERS += soplex/src/soplex/stablesum.h
+endif
+
 pkgconfiglibdir = $(libdir)/pkgconfig
 pkgconfiglib_DATA = coinsoplex.pc
 

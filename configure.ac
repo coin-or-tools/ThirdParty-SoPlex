@@ -74,6 +74,8 @@ if test $coin_has_gmp = yes; then
 fi
 AC_SUBST(SOPLEX_LIBS)
 
+AM_CONDITIONAL([HAVE_STABLESUM_H], [test -e $srcdir/soplex/src/soplex/stablesum.h])
+
 # TODO SoPlex may not be threadsafe by default; adding -DDISABLE_VERBOSITY could help 
 
 ###########################################################################

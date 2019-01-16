@@ -52,15 +52,18 @@ PRE_UNINSTALL = :
 POST_UNINSTALL = :
 build_triplet = @build@
 host_triplet = @host@
-DIST_COMMON = $(am__configure_deps) $(srcdir)/BuildTools/Makemain.inc \
-	$(srcdir)/Makefile.am $(srcdir)/Makefile.in \
-	$(srcdir)/coinsoplex-uninstalled.pc.in \
+
+# soplex/stablesum.h was added with SoPlex 4.0.1
+@HAVE_STABLESUM_H_TRUE@am__append_1 = soplex/src/soplex/stablesum.h
+DIST_COMMON = $(am__configure_deps) \
+	$(am__thirdpartyspxinclude_HEADERS_DIST) \
+	$(srcdir)/BuildTools/Makemain.inc $(srcdir)/Makefile.am \
+	$(srcdir)/Makefile.in $(srcdir)/coinsoplex-uninstalled.pc.in \
 	$(srcdir)/coinsoplex.pc.in $(srcdir)/config_soplex.h.in \
-	$(thirdpartyinclude_HEADERS) $(thirdpartyspxinclude_HEADERS) \
-	$(top_srcdir)/configure config.guess config.sub depcomp \
-	install-sh ltmain.sh missing
-@HAVE_EXTERNALS_TRUE@am__append_1 = Dependencies
-@HAVE_EXTERNALS_TRUE@am__append_2 = .Dependencies-stamp
+	$(thirdpartyinclude_HEADERS) $(top_srcdir)/configure \
+	config.guess config.sub depcomp install-sh ltmain.sh missing
+@HAVE_EXTERNALS_TRUE@am__append_2 = Dependencies
+@HAVE_EXTERNALS_TRUE@am__append_3 = .Dependencies-stamp
 subdir = .
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/acinclude.m4 \
@@ -118,6 +121,62 @@ DIST_SOURCES = $(libcoinsoplex_la_SOURCES)
 pkgconfiglibDATA_INSTALL = $(INSTALL_DATA)
 DATA = $(pkgconfiglib_DATA)
 thirdpartyincludeHEADERS_INSTALL = $(INSTALL_HEADER)
+am__thirdpartyspxinclude_HEADERS_DIST = soplex/src/soplex/array.h \
+	soplex/src/soplex/basevectors.h soplex/src/soplex/classarray.h \
+	soplex/src/soplex/clufactor.h \
+	soplex/src/soplex/clufactor_rational.h \
+	soplex/src/soplex/cring.h soplex/src/soplex/dataarray.h \
+	soplex/src/soplex/datahashtable.h soplex/src/soplex/datakey.h \
+	soplex/src/soplex/dataset.h soplex/src/soplex/didxset.h \
+	soplex/src/soplex/dsvectorbase.h soplex/src/soplex/dsvector.h \
+	soplex/src/soplex/dvectorbase.h soplex/src/soplex/dvector.h \
+	soplex/src/soplex/exceptions.h soplex/src/soplex/gzstream.h \
+	soplex/src/soplex/idlist.h soplex/src/soplex/idxset.h \
+	soplex/src/soplex/islist.h soplex/src/soplex/lpcolbase.h \
+	soplex/src/soplex/lpcol.h soplex/src/soplex/lpcolsetbase.h \
+	soplex/src/soplex/lpcolset.h soplex/src/soplex/lprowbase.h \
+	soplex/src/soplex/lprow.h soplex/src/soplex/lprowsetbase.h \
+	soplex/src/soplex/lprowset.h soplex/src/soplex/mpsinput.h \
+	soplex/src/soplex/nameset.h soplex/src/soplex/notimer.h \
+	soplex/src/soplex/random.h soplex/src/soplex/rational.h \
+	soplex/src/soplex/ratrecon.h soplex/src/soplex/slinsolver.h \
+	soplex/src/soplex/slinsolver_rational.h \
+	soplex/src/soplex/slufactor.h \
+	soplex/src/soplex/slufactor_rational.h \
+	soplex/src/soplex/solbase.h soplex/src/soplex/sol.h \
+	soplex/src/soplex/sorter.h soplex/src/soplex/spxalloc.h \
+	soplex/src/soplex/spxautopr.h soplex/src/soplex/spxbasis.h \
+	soplex/src/soplex/spxboundflippingrt.h \
+	soplex/src/soplex/spxdantzigpr.h \
+	soplex/src/soplex/spxdefaultrt.h \
+	soplex/src/soplex/spxdefines.h soplex/src/soplex/spxdevexpr.h \
+	soplex/src/soplex/spxequilisc.h soplex/src/soplex/spxfastrt.h \
+	soplex/src/soplex/spxfileio.h soplex/src/soplex/spxgeometsc.h \
+	soplex/src/soplex/spxgithash.h soplex/src/soplex/spxharrisrt.h \
+	soplex/src/soplex/spxhybridpr.h soplex/src/soplex/spxid.h \
+	soplex/src/soplex/spxleastsqsc.h soplex/src/soplex/spxlpbase.h \
+	soplex/src/soplex/spxlp.h soplex/src/soplex/spxmainsm.h \
+	soplex/src/soplex/spxout.h soplex/src/soplex/spxparmultpr.h \
+	soplex/src/soplex/spxpricer.h \
+	soplex/src/soplex/spxratiotester.h \
+	soplex/src/soplex/spxscaler.h \
+	soplex/src/soplex/spxsimplifier.h \
+	soplex/src/soplex/spxsolver.h soplex/src/soplex/spxstarter.h \
+	soplex/src/soplex/spxsteepexpr.h \
+	soplex/src/soplex/spxsteeppr.h soplex/src/soplex/spxsumst.h \
+	soplex/src/soplex/spxvectorst.h \
+	soplex/src/soplex/spxweightpr.h \
+	soplex/src/soplex/spxweightst.h \
+	soplex/src/soplex/ssvectorbase.h soplex/src/soplex/ssvector.h \
+	soplex/src/soplex/statistics.h soplex/src/soplex/svectorbase.h \
+	soplex/src/soplex/svector.h soplex/src/soplex/svsetbase.h \
+	soplex/src/soplex/svset.h soplex/src/soplex/timerfactory.h \
+	soplex/src/soplex/timer.h soplex/src/soplex/unitvectorbase.h \
+	soplex/src/soplex/unitvector.h \
+	soplex/src/soplex/updatevector.h soplex/src/soplex/usertimer.h \
+	soplex/src/soplex/vectorbase.h soplex/src/soplex/vector.h \
+	soplex/src/soplex/wallclocktimer.h \
+	soplex/src/soplex/git_hash.cpp soplex/src/soplex/stablesum.h
 thirdpartyspxincludeHEADERS_INSTALL = $(INSTALL_HEADER)
 HEADERS = $(thirdpartyinclude_HEADERS) $(thirdpartyspxinclude_HEADERS)
 ETAGS = etags
@@ -187,6 +246,8 @@ F77 = @F77@
 FFLAGS = @FFLAGS@
 HAVE_EXTERNALS_FALSE = @HAVE_EXTERNALS_FALSE@
 HAVE_EXTERNALS_TRUE = @HAVE_EXTERNALS_TRUE@
+HAVE_STABLESUM_H_FALSE = @HAVE_STABLESUM_H_FALSE@
+HAVE_STABLESUM_H_TRUE = @HAVE_STABLESUM_H_TRUE@
 INSTALL_DATA = @INSTALL_DATA@
 INSTALL_PROGRAM = @INSTALL_PROGRAM@
 INSTALL_SCRIPT = @INSTALL_SCRIPT@
@@ -284,7 +345,7 @@ sol_cc_compiler = @sol_cc_compiler@
 sysconfdir = @sysconfdir@
 target_alias = @target_alias@
 AUTOMAKE_OPTIONS = foreign
-EXTRA_DIST = $(am__append_1)
+EXTRA_DIST = $(am__append_2)
 lib_LTLIBRARIES = libcoinsoplex.la
 
 #ls -1 soplex/src/soplex/*cpp | sort | awk '{printf("  %s \\\n", $0)}'
@@ -360,100 +421,62 @@ thirdpartyinclude_HEADERS = \
   soplex/src/soplex.h
 
 thirdpartyspxincludedir = $(includedir)/coin/ThirdParty/soplex
-thirdpartyspxinclude_HEADERS = \
-  soplex/src/soplex/array.h \
-  soplex/src/soplex/basevectors.h \
-  soplex/src/soplex/classarray.h \
-  soplex/src/soplex/clufactor.h \
-  soplex/src/soplex/clufactor_rational.h \
-  soplex/src/soplex/cring.h \
-  soplex/src/soplex/dataarray.h \
-  soplex/src/soplex/datahashtable.h \
-  soplex/src/soplex/datakey.h \
-  soplex/src/soplex/dataset.h \
-  soplex/src/soplex/didxset.h \
-  soplex/src/soplex/dsvectorbase.h \
-  soplex/src/soplex/dsvector.h \
-  soplex/src/soplex/dvectorbase.h \
-  soplex/src/soplex/dvector.h \
-  soplex/src/soplex/exceptions.h \
-  soplex/src/soplex/gzstream.h \
-  soplex/src/soplex/idlist.h \
-  soplex/src/soplex/idxset.h \
-  soplex/src/soplex/islist.h \
-  soplex/src/soplex/lpcolbase.h \
-  soplex/src/soplex/lpcol.h \
-  soplex/src/soplex/lpcolsetbase.h \
-  soplex/src/soplex/lpcolset.h \
-  soplex/src/soplex/lprowbase.h \
-  soplex/src/soplex/lprow.h \
-  soplex/src/soplex/lprowsetbase.h \
-  soplex/src/soplex/lprowset.h \
-  soplex/src/soplex/mpsinput.h \
-  soplex/src/soplex/nameset.h \
-  soplex/src/soplex/notimer.h \
-  soplex/src/soplex/random.h \
-  soplex/src/soplex/rational.h \
-  soplex/src/soplex/ratrecon.h \
-  soplex/src/soplex/slinsolver.h \
-  soplex/src/soplex/slinsolver_rational.h \
-  soplex/src/soplex/slufactor.h \
-  soplex/src/soplex/slufactor_rational.h \
-  soplex/src/soplex/solbase.h \
-  soplex/src/soplex/sol.h \
-  soplex/src/soplex/sorter.h \
-  soplex/src/soplex/spxalloc.h \
-  soplex/src/soplex/spxautopr.h \
-  soplex/src/soplex/spxbasis.h \
-  soplex/src/soplex/spxboundflippingrt.h \
-  soplex/src/soplex/spxdantzigpr.h \
-  soplex/src/soplex/spxdefaultrt.h \
-  soplex/src/soplex/spxdefines.h \
-  soplex/src/soplex/spxdevexpr.h \
-  soplex/src/soplex/spxequilisc.h \
-  soplex/src/soplex/spxfastrt.h \
-  soplex/src/soplex/spxfileio.h \
-  soplex/src/soplex/spxgeometsc.h \
-  soplex/src/soplex/spxgithash.h \
-  soplex/src/soplex/spxharrisrt.h \
-  soplex/src/soplex/spxhybridpr.h \
-  soplex/src/soplex/spxid.h \
-  soplex/src/soplex/spxleastsqsc.h \
-  soplex/src/soplex/spxlpbase.h \
-  soplex/src/soplex/spxlp.h \
-  soplex/src/soplex/spxmainsm.h \
-  soplex/src/soplex/spxout.h \
-  soplex/src/soplex/spxparmultpr.h \
-  soplex/src/soplex/spxpricer.h \
-  soplex/src/soplex/spxratiotester.h \
-  soplex/src/soplex/spxscaler.h \
-  soplex/src/soplex/spxsimplifier.h \
-  soplex/src/soplex/spxsolver.h \
-  soplex/src/soplex/spxstarter.h \
-  soplex/src/soplex/spxsteepexpr.h \
-  soplex/src/soplex/spxsteeppr.h \
-  soplex/src/soplex/spxsumst.h \
-  soplex/src/soplex/spxvectorst.h \
-  soplex/src/soplex/spxweightpr.h \
-  soplex/src/soplex/spxweightst.h \
-  soplex/src/soplex/ssvectorbase.h \
-  soplex/src/soplex/ssvector.h \
-  soplex/src/soplex/statistics.h \
-  soplex/src/soplex/svectorbase.h \
-  soplex/src/soplex/svector.h \
-  soplex/src/soplex/svsetbase.h \
-  soplex/src/soplex/svset.h \
-  soplex/src/soplex/timerfactory.h \
-  soplex/src/soplex/timer.h \
-  soplex/src/soplex/unitvectorbase.h \
-  soplex/src/soplex/unitvector.h \
-  soplex/src/soplex/updatevector.h \
-  soplex/src/soplex/usertimer.h \
-  soplex/src/soplex/vectorbase.h \
-  soplex/src/soplex/vector.h \
-  soplex/src/soplex/wallclocktimer.h \
-  soplex/src/soplex/git_hash.cpp
-
+thirdpartyspxinclude_HEADERS = soplex/src/soplex/array.h \
+	soplex/src/soplex/basevectors.h soplex/src/soplex/classarray.h \
+	soplex/src/soplex/clufactor.h \
+	soplex/src/soplex/clufactor_rational.h \
+	soplex/src/soplex/cring.h soplex/src/soplex/dataarray.h \
+	soplex/src/soplex/datahashtable.h soplex/src/soplex/datakey.h \
+	soplex/src/soplex/dataset.h soplex/src/soplex/didxset.h \
+	soplex/src/soplex/dsvectorbase.h soplex/src/soplex/dsvector.h \
+	soplex/src/soplex/dvectorbase.h soplex/src/soplex/dvector.h \
+	soplex/src/soplex/exceptions.h soplex/src/soplex/gzstream.h \
+	soplex/src/soplex/idlist.h soplex/src/soplex/idxset.h \
+	soplex/src/soplex/islist.h soplex/src/soplex/lpcolbase.h \
+	soplex/src/soplex/lpcol.h soplex/src/soplex/lpcolsetbase.h \
+	soplex/src/soplex/lpcolset.h soplex/src/soplex/lprowbase.h \
+	soplex/src/soplex/lprow.h soplex/src/soplex/lprowsetbase.h \
+	soplex/src/soplex/lprowset.h soplex/src/soplex/mpsinput.h \
+	soplex/src/soplex/nameset.h soplex/src/soplex/notimer.h \
+	soplex/src/soplex/random.h soplex/src/soplex/rational.h \
+	soplex/src/soplex/ratrecon.h soplex/src/soplex/slinsolver.h \
+	soplex/src/soplex/slinsolver_rational.h \
+	soplex/src/soplex/slufactor.h \
+	soplex/src/soplex/slufactor_rational.h \
+	soplex/src/soplex/solbase.h soplex/src/soplex/sol.h \
+	soplex/src/soplex/sorter.h soplex/src/soplex/spxalloc.h \
+	soplex/src/soplex/spxautopr.h soplex/src/soplex/spxbasis.h \
+	soplex/src/soplex/spxboundflippingrt.h \
+	soplex/src/soplex/spxdantzigpr.h \
+	soplex/src/soplex/spxdefaultrt.h \
+	soplex/src/soplex/spxdefines.h soplex/src/soplex/spxdevexpr.h \
+	soplex/src/soplex/spxequilisc.h soplex/src/soplex/spxfastrt.h \
+	soplex/src/soplex/spxfileio.h soplex/src/soplex/spxgeometsc.h \
+	soplex/src/soplex/spxgithash.h soplex/src/soplex/spxharrisrt.h \
+	soplex/src/soplex/spxhybridpr.h soplex/src/soplex/spxid.h \
+	soplex/src/soplex/spxleastsqsc.h soplex/src/soplex/spxlpbase.h \
+	soplex/src/soplex/spxlp.h soplex/src/soplex/spxmainsm.h \
+	soplex/src/soplex/spxout.h soplex/src/soplex/spxparmultpr.h \
+	soplex/src/soplex/spxpricer.h \
+	soplex/src/soplex/spxratiotester.h \
+	soplex/src/soplex/spxscaler.h \
+	soplex/src/soplex/spxsimplifier.h \
+	soplex/src/soplex/spxsolver.h soplex/src/soplex/spxstarter.h \
+	soplex/src/soplex/spxsteepexpr.h \
+	soplex/src/soplex/spxsteeppr.h soplex/src/soplex/spxsumst.h \
+	soplex/src/soplex/spxvectorst.h \
+	soplex/src/soplex/spxweightpr.h \
+	soplex/src/soplex/spxweightst.h \
+	soplex/src/soplex/ssvectorbase.h soplex/src/soplex/ssvector.h \
+	soplex/src/soplex/statistics.h soplex/src/soplex/svectorbase.h \
+	soplex/src/soplex/svector.h soplex/src/soplex/svsetbase.h \
+	soplex/src/soplex/svset.h soplex/src/soplex/timerfactory.h \
+	soplex/src/soplex/timer.h soplex/src/soplex/unitvectorbase.h \
+	soplex/src/soplex/unitvector.h \
+	soplex/src/soplex/updatevector.h soplex/src/soplex/usertimer.h \
+	soplex/src/soplex/vectorbase.h soplex/src/soplex/vector.h \
+	soplex/src/soplex/wallclocktimer.h \
+	soplex/src/soplex/git_hash.cpp $(am__append_1)
 pkgconfiglibdir = $(libdir)/pkgconfig
 pkgconfiglib_DATA = coinsoplex.pc
 
@@ -462,7 +485,7 @@ pkgconfiglib_DATA = coinsoplex.pc
 ########################################################################
 
 # Files that are generated and should be cleaned with make distclean
-DISTCLEANFILES = $(MAKEOKFILE) $(am__append_2) $(VPATH_DISTCLEANFILES)
+DISTCLEANFILES = $(MAKEOKFILE) $(am__append_3) $(VPATH_DISTCLEANFILES)
 DocFiles = README AUTHORS LICENSE 
 DocInstallDir = $(datadir)/coin/doc/$(PACKAGE_NAME)
 COIN_HAS_DOXYGEN = @COIN_HAS_DOXYGEN_TRUE@TRUE
